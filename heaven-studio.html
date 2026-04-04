@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heaven Studio — Premium Photography, Noida</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/><link as="image" fetchpriority="high" href="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit,fl_progressive/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp" imagesizes="100vw" imagesrcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_1280,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 1280w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_1920,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 1920w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_2560,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 2560w" rel="preload"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+:root{
+  --ink:#0a0a0a;
+  --ink2:#1c1c1c;
+  --paper:#f7f4ef;
+  --paper2:#ede9e2;
+  --gold:#b8965a;
+  --gold2:#d4b077;
+  --cream:rgba(247,244,239,0.06);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none}
+
+/* ── CURSOR ── */
+#cur{position:fixed;top:0;left:0;pointer-events:none;z-index:9999}
+#cur-dot{position:absolute;width:5px;height:5px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);transition:transform .08s}
+#cur-ring{position:absolute;width:32px;height:32px;border:1px solid rgba(184,150,90,.45);border-radius:50%;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .35s}
+body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:52px;border-color:var(--gold)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:32px 64px;transition:padding .4s,background .4s}
+nav.s{padding:18px 64px;background:rgba(10,10,10,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(184,150,90,.12)}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1;gap:4px;cursor:none}
+.logo-main{font-family:var(--serif);font-size:1.25rem;font-weight:400;letter-spacing:.08em;color:var(--paper)}
+.logo-sub{font-family:var(--sans);font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:var(--sans);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,239,.55);text-decoration:none;transition:color .3s;cursor:none;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-book{font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:11px 28px;text-decoration:none;cursor:none;transition:background .3s;font-weight:500}
+.nav-book:hover{background:var(--gold2)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:6px}
+.ham span{display:block;width:24px;height:1px;background:var(--paper);transition:all .35s}
+.ham.o span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.ham.o span:nth-child(2){opacity:0}
+.ham.o span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-menu{display:none;position:fixed;inset:0;z-index:190;background:rgba(10,10,10,.98);flex-direction:column;align-items:center;justify-content:center;gap:36px}
+.mob-menu.o{display:flex}
+.mob-menu a{font-family:var(--serif);font-size:2.2rem;font-style:italic;color:var(--paper);text-decoration:none;transition:color .3s}
+.mob-menu a:hover{color:var(--gold)}
+
+/* ── PAGES ── */
+.pg{display:none}
+.pg.on{display:block}
+#home{display:block}
+
+/* ════════════════
+   HOME — HERO
+════════════════ */
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
+.hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.72)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.75) 0%,rgba(10,10,10,.2) 60%,transparent 100%)}
+.hero-grad2{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.9) 0%,transparent 55%)}
+.hero-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 80px}
+.hero-eyebrow{font-family:var(--sans);font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;opacity:0;animation:fadeUp 1s .3s forwards}
+.hero-h1{font-family:var(--serif);font-size:clamp(4rem,8.5vw,8.5rem);font-weight:400;line-height:.93;letter-spacing:-.01em;color:var(--paper);margin-bottom:28px;opacity:0;animation:fadeUp 1.1s .5s forwards}
+.hero-h1 em{font-style:italic;color:var(--gold2);display:block}
+.hero-sub{font-family:var(--sans);font-size:.82rem;line-height:1.9;color:rgba(247,244,239,.65);max-width:400px;margin-bottom:44px;font-weight:300;opacity:0;animation:fadeUp 1.1s .7s forwards}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 1.1s .9s forwards}
+.btn-g{font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:15px 36px;text-decoration:none;cursor:none;transition:background .3s;font-weight:500;display:inline-block}
+.btn-g:hover{background:var(--gold2)}
+.btn-o{font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--paper);background:transparent;border:1px solid rgba(247,244,239,.3);padding:15px 36px;text-decoration:none;cursor:none;transition:all .3s;display:inline-block}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.hero-scroll{position:absolute;right:64px;bottom:80px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:12px}
+.hero-scroll-line{width:1px;height:64px;background:linear-gradient(to bottom,transparent,var(--gold));animation:pulse 2.2s ease-in-out infinite}
+.hero-scroll-txt{font-family:var(--sans);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);writing-mode:vertical-rl}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ── MARQUEE ── */
+.mq{overflow:hidden;border-top:1px solid rgba(184,150,90,.18);border-bottom:1px solid rgba(184,150,90,.18);background:rgba(184,150,90,.06);padding:14px 0}
+.mq-track{display:flex;animation:mq 30s linear infinite;white-space:nowrap}
+.mq-item{display:inline-flex;align-items:center;gap:20px;padding:0 32px;font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--gold);letter-spacing:.06em}
+.mq-sep{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.5;flex-shrink:0}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── INTRO ── */
+.intro{display:grid;grid-template-columns:1fr 1fr;max-width:1280px;margin:0 auto;padding:120px 64px;gap:100px;align-items:center}
+.intro-img-wrap{position:relative}
+.intro-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.intro-badge{position:absolute;bottom:-24px;right:-24px;background:var(--gold);padding:28px 24px;text-align:center}
+.intro-badge-num{font-family:var(--serif);font-size:2.8rem;font-weight:400;color:var(--ink);line-height:1;display:block}
+.intro-badge-txt{font-family:var(--sans);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);font-weight:500;display:block;margin-top:4px}
+.intro-right{}
+.eyebrow{font-family:var(--sans);font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:20px;display:block}
+.rule{width:48px;height:1px;background:var(--gold);margin-bottom:24px}
+.heading{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:400;line-height:1.12;color:var(--paper);letter-spacing:-.01em;margin-bottom:24px}
+.heading em{font-style:italic;color:var(--gold2)}
+.body-txt{font-family:var(--sans);font-size:.8rem;line-height:2;color:rgba(247,244,239,.6);font-weight:300;margin-bottom:20px}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:40px 0 44px;border-top:1px solid rgba(247,244,239,.08);padding-top:40px}
+.stat-n{font-family:var(--serif);font-size:2.8rem;font-weight:400;color:var(--gold);line-height:1}
+.stat-l{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,244,239,.45);margin-top:5px}
+
+/* ── SERVICES ── */
+.svc{background:var(--ink2);padding:100px 64px}
+.svc-hd{display:flex;justify-content:space-between;align-items:flex-end;max-width:1280px;margin:0 auto 72px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:1280px;margin:0 auto}
+.svc-card{background:var(--ink);position:relative;overflow:hidden;cursor:none;display:flex;flex-direction:column}
+.svc-photo{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1);filter:brightness(.8)}
+.svc-card:hover .svc-photo{transform:scale(1.06)}
+.svc-info{padding:28px 28px 32px;background:var(--ink);position:relative;z-index:2}
+.svc-info::before{content:'';position:absolute;top:0;left:28px;right:28px;height:1px;background:rgba(184,150,90,.2)}
+.svc-num{font-family:var(--serif);font-size:.8rem;color:var(--gold);opacity:.6;display:block;margin-bottom:8px;font-style:italic}
+.svc-name{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:var(--paper);margin-bottom:10px}
+.svc-desc{font-family:var(--sans);font-size:.72rem;line-height:1.9;color:rgba(247,244,239,.5);font-weight:300}
+.svc-hover{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.3) 60%,transparent 100%);opacity:0;transition:opacity .45s;display:flex;align-items:flex-end;padding:32px}
+.svc-card:hover .svc-hover{opacity:1}
+.svc-hover-txt{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--paper)}
+
+/* ── PORTFOLIO STRIP ── */
+.port-strip{padding:120px 64px}
+.port-strip-hd{display:flex;justify-content:space-between;align-items:flex-end;max-width:1280px;margin:0 auto 56px}
+.masonry{columns:3;column-gap:8px;max-width:1280px;margin:0 auto}
+.m-item{break-inside:avoid;margin-bottom:8px;position:relative;overflow:hidden;cursor:none}
+.m-item img{width:100%;display:block;transition:transform .65s cubic-bezier(.16,1,.3,1);filter:brightness(.88)}
+.m-item:hover img{transform:scale(1.04);filter:brightness(.75)}
+.m-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.92) 0%,transparent 50%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.m-item:hover .m-over{opacity:1}
+.m-cat{font-family:var(--sans);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.m-title{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--paper)}
+.view-all{text-align:center;margin-top:52px}
+
+/* ── FEATURE ROW (full-bleed split) ── */
+.feat{display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+.feat.rev{direction:rtl}
+.feat.rev>*{direction:ltr}
+.feat-img{position:relative;overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.feat:hover .feat-img img{transform:scale(1.04)}
+.feat-body{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:80px 72px}
+.feat-body .eyebrow{margin-bottom:16px}
+.feat-body .heading{margin-bottom:20px}
+.feat-body .body-txt{margin-bottom:32px}
+
+/* ── TESTIMONIALS ── */
+.testi{padding:100px 64px;background:var(--ink);overflow:hidden;position:relative}
+.testi::before{content:'\201C';position:absolute;top:-60px;left:20px;font-family:var(--serif);font-size:28rem;font-weight:400;color:rgba(184,150,90,.03);line-height:1;pointer-events:none}
+.testi-hd{text-align:center;margin-bottom:64px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1280px;margin:0 auto}
+.t-card{border:1px solid rgba(247,244,239,.07);padding:40px 32px;position:relative;transition:border-color .4s}
+.t-card:hover{border-color:rgba(184,150,90,.25)}
+.t-stars{color:var(--gold);font-size:.6rem;letter-spacing:4px;margin-bottom:20px}
+.t-text{font-family:var(--serif);font-size:1rem;font-style:italic;line-height:1.85;color:rgba(247,244,239,.7);margin-bottom:28px}
+.t-author{display:flex;align-items:center;gap:14px}
+.t-av{width:40px;height:40px;border-radius:50%;background:rgba(184,150,90,.15);border:1px solid rgba(184,150,90,.3);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.95rem;color:var(--gold);flex-shrink:0}
+.t-name{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.06em;color:var(--paper);display:block}
+.t-svc{font-family:var(--sans);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+
+/* ── CTA BAND ── */
+.cta-band{position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center}
+.cta-band-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.35)}
+.cta-band-body{position:relative;z-index:2;max-width:700px;padding:0 64px}
+.cta-band .heading{font-size:clamp(2.4rem,5vw,4.5rem)}
+.cta-band .body-txt{max-width:480px;margin-bottom:40px}
+
+/* ════════════════
+   ABOUT PAGE
+════════════════ */
+.pg-hero{height:55vh;min-height:480px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 64px 72px}
+.pg-hero img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.45)}
+.pg-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.pg-hero-body{position:relative;z-index:2}
+.pg-eyebrow{font-family:var(--sans);font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:400}
+.pg-title{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);font-weight:400;color:var(--paper);line-height:.95;letter-spacing:-.02em}
+.pg-title em{font-style:italic;color:var(--gold2)}
+.about-body{max-width:1280px;margin:0 auto;padding:100px 64px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+.about-img-main{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.about-img-accent{width:65%;aspect-ratio:1;object-fit:cover;display:block;margin-top:-15%;margin-left:auto;border:4px solid var(--ink);position:relative;z-index:2}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:52px}
+.about-stat{border-left:1px solid rgba(184,150,90,.3);padding-left:20px}
+.as-n{font-family:var(--serif);font-size:2.8rem;font-weight:400;color:var(--gold);line-height:1}
+.as-l{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,244,239,.4);margin-top:5px}
+.values{margin-top:64px}
+.v-item{display:flex;gap:20px;padding:28px 0;border-bottom:1px solid rgba(247,244,239,.06)}
+.v-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold);opacity:.6;flex-shrink:0;padding-top:3px}
+.v-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--paper);margin-bottom:8px}
+.v-txt{font-family:var(--sans);font-size:.75rem;line-height:1.9;color:rgba(247,244,239,.5);font-weight:300}
+
+/* ════════════════
+   SERVICES PAGE
+════════════════ */
+.svc-page-body{max-width:1280px;margin:0 auto;padding:100px 64px}
+.svc-list{}
+.svc-row{display:grid;grid-template-columns:72px 1fr 260px;gap:48px;align-items:center;padding:56px 0;border-bottom:1px solid rgba(247,244,239,.06);cursor:none;transition:all .35s}
+.svc-row:hover{padding-left:16px;padding-right:16px;margin:0 -16px}
+.svc-r-num{font-family:var(--serif);font-size:2.8rem;font-weight:400;color:rgba(184,150,90,.18);text-align:right;line-height:1}
+.svc-r-name{font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--paper);margin-bottom:10px;transition:color .3s}
+.svc-row:hover .svc-r-name{color:var(--gold2)}
+.svc-r-desc{font-family:var(--sans);font-size:.76rem;line-height:1.9;color:rgba(247,244,239,.5);font-weight:300;max-width:520px}
+.svc-r-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.tag{font-family:var(--sans);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,150,90,.28);padding:6px 13px}
+
+/* ════════════════
+   PORTFOLIO PAGE
+════════════════ */
+.port-body{padding:72px 64px 120px;max-width:1380px;margin:0 auto}
+.filter-bar{display:flex;gap:0;margin-bottom:52px;border-bottom:1px solid rgba(247,244,239,.08);flex-wrap:wrap}
+.fb{font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,244,239,.45);background:none;border:none;padding:14px 24px;cursor:none;transition:all .3s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.fb:hover{color:var(--paper)}
+.fb.on{color:var(--gold);border-bottom-color:var(--gold)}
+.port-masonry{columns:3;column-gap:8px}
+.pi{break-inside:avoid;margin-bottom:8px;position:relative;overflow:hidden;cursor:none}
+.pi img{width:100%;display:block;transition:transform .65s cubic-bezier(.16,1,.3,1);filter:brightness(.88)}
+.pi:hover img{transform:scale(1.05);filter:brightness(.65)}
+.pi-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.92) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+.pi:hover .pi-over{opacity:1}
+.pi-cat{font-family:var(--sans);font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.pi-title{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--paper)}
+
+/* ════════════════
+   CONTACT PAGE
+════════════════ */
+.contact-body{max-width:1280px;margin:0 auto;padding:100px 64px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+.cd{display:flex;gap:18px;align-items:flex-start;margin-bottom:32px}
+.cd-icon{width:42px;height:42px;flex-shrink:0;border:1px solid rgba(184,150,90,.22);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.cd-lbl{font-family:var(--sans);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.cd-val{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--paper);text-decoration:none;display:block;transition:color .3s}
+.cd-val:hover{color:var(--gold2)}
+.social-row{display:flex;gap:12px;margin-top:44px}
+.sl{width:42px;height:42px;border:1px solid rgba(247,244,239,.1);display:flex;align-items:center;justify-content:center;color:rgba(247,244,239,.5);text-decoration:none;transition:all .3s;cursor:none}
+.sl:hover{border-color:var(--gold);color:var(--gold)}
+.map-wrap{margin-top:44px;border:1px solid rgba(184,150,90,.12);aspect-ratio:16/10;overflow:hidden;position:relative}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:grayscale(.85) invert(.88) hue-rotate(180deg)}
+/* Form */
+.form-h{font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--paper);margin-bottom:10px}
+.form-h em{font-style:italic;color:var(--gold2)}
+.form-sub{font-family:var(--sans);font-size:.75rem;color:rgba(247,244,239,.5);line-height:1.8;margin-bottom:40px}
+.fg{margin-bottom:24px}
+.fl{font-family:var(--sans);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+.fi,.fse,.fta{width:100%;background:rgba(247,244,239,.04);border:1px solid rgba(247,244,239,.08);color:var(--paper);font-family:var(--sans);font-size:.8rem;font-weight:300;padding:14px 18px;outline:none;transition:border-color .3s;appearance:none}
+.fi:focus,.fse:focus,.fta:focus{border-color:rgba(184,150,90,.4)}
+.fi::placeholder,.fta::placeholder{color:rgba(247,244,239,.2)}
+.fta{resize:none;height:120px}
+.fse{cursor:none}
+.fse option{background:var(--ink)}
+.f2col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wa-btn{width:100%;background:#25D366;color:#fff;border:none;padding:16px 28px;font-family:var(--sans);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .3s}
+.wa-btn:hover{background:#1eb556}
+.wa-note{font-family:var(--sans);font-size:.62rem;color:rgba(247,244,239,.35);text-align:center;margin-top:12px;letter-spacing:.04em}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid rgba(184,150,90,.12);padding:72px 64px 36px}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:60px;margin-bottom:52px;padding-bottom:52px;border-bottom:1px solid rgba(247,244,239,.05)}
+.ft-logo{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--paper);letter-spacing:.06em;margin-bottom:5px}
+.ft-logo-s{font-family:var(--sans);font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.ft-tag{font-family:var(--serif);font-style:italic;font-size:.9rem;color:rgba(247,244,239,.4);line-height:1.7}
+.ft-col-h{font-family:var(--sans);font-size:.57rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:400}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ft-links a{font-family:var(--sans);font-size:.75rem;color:rgba(247,244,239,.4);text-decoration:none;transition:color .3s;cursor:none;letter-spacing:.04em}
+.ft-links a:hover{color:var(--paper)}
+.ft-social{display:flex;gap:10px;margin-top:22px}
+.fb2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-copy{font-family:var(--sans);font-size:.62rem;color:rgba(247,244,239,.22);letter-spacing:.05em}
+.ft-made{font-family:var(--serif);font-style:italic;font-size:.82rem;color:rgba(184,150,90,.3)}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .75s,transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .intro,.about-grid,.contact-body{grid-template-columns:1fr;gap:56px}
+  .svc-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .masonry,.port-masonry{columns:2}
+  .feat{grid-template-columns:1fr}
+  .feat-img{aspect-ratio:16/7}
+  .svc-row{grid-template-columns:48px 1fr;.svc-r-tags{display:none}}
+  .ft{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  nav{padding:22px 24px}
+  nav.s{padding:14px 24px}
+  .nav-links,.nav-book{display:none}
+  .ham{display:flex}
+  .hero-body,.hero-scroll{padding-left:24px;padding-right:24px}
+  .hero-body{padding-bottom:56px}
+  .intro,.about-body,.svc,.svc-page-body,.port-strip,.port-body,.testi,.contact-body,footer{padding-left:24px;padding-right:24px}
+  .pg-hero{padding:0 24px 52px}
+  .svc-grid,.testi-grid{grid-template-columns:1fr}
+  .masonry,.port-masonry{columns:1}
+  .svc-row{grid-template-columns:1fr}
+  .svc-r-num,.svc-r-tags{display:none}
+  .ft{grid-template-columns:1fr;gap:36px}
+  .f2col{grid-template-columns:1fr}
+  .cta-band-body{padding:0 24px}
+}
+</style>
+</head>
+<body>
+<div id="cur"><div id="cur-ring"></div><div id="cur-dot"></div></div>
+<!-- NAV -->
+<nav id="nb">
+<a class="logo" href="#" onclick="go('home')">
+<span class="logo-main">Heaven Studio</span>
+<span class="logo-sub">Premium Photography</span>
+</a>
+<ul class="nav-links">
+<li><a href="#" onclick="go('home')">Home</a></li>
+<li><a href="#" onclick="go('about')">About</a></li>
+<li><a href="#" onclick="go('services')">Services</a></li>
+<li><a href="#" onclick="go('portfolio')">Portfolio</a></li>
+<li><a href="#" onclick="go('contact')">Contact</a></li>
+</ul>
+<a class="nav-book" href="https://wa.me/918777759923?text=Hi%20Heaven%20Studio%2C%20I%27d%20like%20to%20book%20a%20session." target="_blank">Book a Session</a>
+<button class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob">
+<a href="#" onclick="go('home');toggleMob()">Home</a>
+<a href="#" onclick="go('about');toggleMob()">About</a>
+<a href="#" onclick="go('services');toggleMob()">Services</a>
+<a href="#" onclick="go('portfolio');toggleMob()">Portfolio</a>
+<a href="#" onclick="go('contact');toggleMob()">Contact</a>
+<a href="https://wa.me/918777759923" style="color:var(--gold)" target="_blank">Book a Session</a>
+</div>
+<!-- ══════════════ HOME ══════════════ -->
+<div class="pg on" id="home">
+<section class="hero">
+<img alt="Heaven Studio Photography" class="hero-img" decoding="sync" fetchpriority="high" height="1080" sizes="100vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit,fl_progressive/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_1280,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 1280w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_1920,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 1920w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,fl_progressive,w_2560,c_limit/v1765430986/admin-heaven-studio/heroes/pzfuds5hwgvmwhmrqnam.webp 2560w" width="1920"/>
+<div class="hero-grad"></div>
+<div class="hero-grad2"></div>
+<div class="hero-body">
+<p class="hero-eyebrow">Noida · Delhi NCR  —  Est. 2017</p>
+<h1 class="hero-h1">Heaven<em>Studio</em></h1>
+<p class="hero-sub">Where life's most sacred chapters become timeless works of art.</p>
+<div class="hero-btns">
+<a class="btn-g" href="#" onclick="go('portfolio')">View Portfolio</a>
+<a class="btn-o" href="#" onclick="go('contact')">Book a Session</a>
+</div>
+</div>
+<div class="hero-scroll">
+<div class="hero-scroll-line"></div>
+<span class="hero-scroll-txt">Scroll</span>
+</div>
+</section>
+<div class="mq">
+<div class="mq-track">
+<span class="mq-item"><span class="mq-sep"></span>Maternity Photography</span>
+<span class="mq-item"><span class="mq-sep"></span>Newborn Portraits</span>
+<span class="mq-item"><span class="mq-sep"></span>Wedding Cinematography</span>
+<span class="mq-item"><span class="mq-sep"></span>Pre-Wedding Shoots</span>
+<span class="mq-item"><span class="mq-sep"></span>Kids Photography</span>
+<span class="mq-item"><span class="mq-sep"></span>Corporate Portraits</span>
+<span class="mq-item"><span class="mq-sep"></span>Product Lifestyle</span>
+<span class="mq-item"><span class="mq-sep"></span>Maternity Photography</span>
+<span class="mq-item"><span class="mq-sep"></span>Newborn Portraits</span>
+<span class="mq-item"><span class="mq-sep"></span>Wedding Cinematography</span>
+<span class="mq-item"><span class="mq-sep"></span>Pre-Wedding Shoots</span>
+<span class="mq-item"><span class="mq-sep"></span>Kids Photography</span>
+<span class="mq-item"><span class="mq-sep"></span>Corporate Portraits</span>
+<span class="mq-item"><span class="mq-sep"></span>Product Lifestyle</span>
+</div>
+</div>
+<!-- INTRO -->
+<section class="intro">
+<div class="intro-img-wrap rv">
+<img alt="Heaven Studio" class="intro-img" sizes="(max-width:900px) 100vw, 50vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1200,c_limit/v1765451275/admin-heaven-studio/heroes/qbzma619jpovfqrysbkr.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_600,c_limit/v1765451275/admin-heaven-studio/heroes/qbzma619jpovfqrysbkr.webp 600w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1200,c_limit/v1765451275/admin-heaven-studio/heroes/qbzma619jpovfqrysbkr.webp 1200w"/>
+<div class="intro-badge">
+<span class="intro-badge-num">7+</span>
+<span class="intro-badge-txt">Years of Excellence</span>
+</div>
+</div>
+<div class="intro-right rv">
+<span class="eyebrow">Our Story</span>
+<div class="rule"></div>
+<h2 class="heading">We don't take photographs.<br/>We craft <em>memories.</em></h2>
+<p class="body-txt">Heaven Studio is Noida's premier photography studio — a sanctuary where technical mastery meets artistic devotion. Founded with a singular vision to redefine premium photography in Delhi NCR, we approach every session as a work of authorship.</p>
+<p class="body-txt">From the delicate wonder of a newborn's first breath to the grandeur of a wedding celebration, every chapter of your life deserves to be beautifully told.</p>
+<div class="stats-row">
+<div><div class="stat-n">500+</div><div class="stat-l">Sessions</div></div>
+<div><div class="stat-n">98%</div><div class="stat-l">Satisfaction</div></div>
+<div><div class="stat-n">7</div><div class="stat-l">Specializations</div></div>
+</div>
+<a class="btn-o" href="#" onclick="go('about')">Our Philosophy</a>
+</div>
+</section>
+<!-- SERVICES GRID -->
+<section class="svc">
+<div class="svc-hd rv">
+<div>
+<span class="eyebrow">Specializations</span>
+<h2 class="heading" style="margin-bottom:0">What we <em>create</em></h2>
+</div>
+<a class="btn-o" href="#" onclick="go('services')">All Services</a>
+</div>
+<div class="svc-grid">
+<div class="svc-card rv">
+<img alt="Maternity Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765538349/admin-heaven-studio/heroes/hw89ahddibuwv1ukntwy.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765538349/admin-heaven-studio/heroes/hw89ahddibuwv1ukntwy.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765538349/admin-heaven-studio/heroes/hw89ahddibuwv1ukntwy.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">01</span>
+<div class="svc-name">Maternity</div>
+<p class="svc-desc">Ethereal portraits that honor the sacred journey of motherhood.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">28–34 weeks · Studio &amp; Outdoor</span></div>
+</div>
+<div class="svc-card rv">
+<img alt="Newborn Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765796242/admin-heaven-studio/heroes/xdvkuyrt6fuhnoxuw9wx.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765796242/admin-heaven-studio/heroes/xdvkuyrt6fuhnoxuw9wx.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765796242/admin-heaven-studio/heroes/xdvkuyrt6fuhnoxuw9wx.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">02</span>
+<div class="svc-name">Newborn</div>
+<p class="svc-desc">Delicate captures of those impossibly fleeting first days.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">Best within 15 days of birth</span></div>
+</div>
+<div class="svc-card rv">
+<img alt="Kids Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765549691/admin-heaven-studio/heroes/tdktcnymqv6j7it9ppzc.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765549691/admin-heaven-studio/heroes/tdktcnymqv6j7it9ppzc.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765549691/admin-heaven-studio/heroes/tdktcnymqv6j7it9ppzc.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">03</span>
+<div class="svc-name">Kids</div>
+<p class="svc-desc">Joyful sessions that freeze childhood's pure, unscripted magic.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">Milestone &amp; Birthday sessions</span></div>
+</div>
+<div class="svc-card rv">
+<img alt="Wedding Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765538931/admin-heaven-studio/heroes/dsz2poffm5rkuv2xt0q3.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765538931/admin-heaven-studio/heroes/dsz2poffm5rkuv2xt0q3.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765538931/admin-heaven-studio/heroes/dsz2poffm5rkuv2xt0q3.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">04</span>
+<div class="svc-name">Wedding</div>
+<p class="svc-desc">Full-day cinematic coverage of your complete love story.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">Full day · 2-photographer team</span></div>
+</div>
+<div class="svc-card rv">
+<img alt="Pre-Wedding Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765442942/admin-heaven-studio/heroes/v6i6u0us4sdqhp3odx7u.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765442942/admin-heaven-studio/heroes/v6i6u0us4sdqhp3odx7u.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765442942/admin-heaven-studio/heroes/v6i6u0us4sdqhp3odx7u.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">05</span>
+<div class="svc-name">Pre-Wedding</div>
+<p class="svc-desc">Romantic, editorial sessions at handpicked locations.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">Location scouted · Destination available</span></div>
+</div>
+<div class="svc-card rv">
+<img alt="Corporate Photography" class="svc-photo" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765449846/admin-heaven-studio/heroes/uwrrp2syuhat9s5hnb8b.webp" srcset="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_400,c_limit/v1765449846/admin-heaven-studio/heroes/uwrrp2syuhat9s5hnb8b.webp 400w, https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_800,c_limit/v1765449846/admin-heaven-studio/heroes/uwrrp2syuhat9s5hnb8b.webp 800w"/>
+<div class="svc-info">
+<span class="svc-num">06</span>
+<div class="svc-name">Corporate &amp; Product</div>
+<p class="svc-desc">Brand imagery that elevates your professional identity.</p>
+</div>
+<div class="svc-hover"><span class="svc-hover-txt">Headshots · Brand campaigns</span></div>
+</div>
+</div>
+</section>
+<!-- PORTFOLIO PREVIEW -->
+<section class="port-strip">
+<div class="port-strip-hd rv">
+<div>
+<span class="eyebrow">Selected Works</span>
+<h2 class="heading" style="margin-bottom:0">Our <em>Portfolio</em></h2>
+</div>
+<a class="btn-o" href="#" onclick="go('portfolio')">View All Work</a>
+</div>
+<div class="masonry">
+<div class="m-item rv"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765537721/admin-heaven-studio/heroes/vzqwgxtfebjov9ooe0zi.webp"/><div class="m-over"><span class="m-cat">Maternity</span><span class="m-title">Golden Bloom</span></div></div>
+<div class="m-item rv"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538912/admin-heaven-studio/heroes/shbuqdw6gy0bnurcr6n4.webp"/><div class="m-over"><span class="m-cat">Wedding</span><span class="m-title">The Ceremony</span></div></div>
+<div class="m-item rv"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549749/admin-heaven-studio/heroes/azo6vqk3yzmwhz8agdfs.webp"/><div class="m-over"><span class="m-cat">Kids</span><span class="m-title">Pure Joy</span></div></div>
+<div class="m-item rv"><img alt="Pre-Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442149/admin-heaven-studio/heroes/gcdzxadfibilpyf0dpfc.webp"/><div class="m-over"><span class="m-cat">Pre-Wedding</span><span class="m-title">Love Story</span></div></div>
+<div class="m-item rv"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538414/admin-heaven-studio/heroes/yy98wggtkzbtdrs5v7nz.webp"/><div class="m-over"><span class="m-cat">Maternity</span><span class="m-title">Sacred Glow</span></div></div>
+<div class="m-item rv"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539354/admin-heaven-studio/heroes/qwj7uvkyaqgvlypcedhr.webp"/><div class="m-over"><span class="m-cat">Wedding</span><span class="m-title">A Royal Celebration</span></div></div>
+<div class="m-item rv"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549712/admin-heaven-studio/heroes/luodqjq4iwb4mz5mjee3.webp"/><div class="m-over"><span class="m-cat">Kids</span><span class="m-title">Childhood Wonder</span></div></div>
+<div class="m-item rv"><img alt="Family" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442621/admin-heaven-studio/heroes/acpc9yv7swjauan9ikdp.webp"/><div class="m-over"><span class="m-cat">Family</span><span class="m-title">Together</span></div></div>
+<div class="m-item rv"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538384/admin-heaven-studio/heroes/nbmifadpcexyamz3b4so.webp"/><div class="m-over"><span class="m-cat">Maternity</span><span class="m-title">Expecting</span></div></div>
+</div>
+<div class="view-all rv">
+<a class="btn-g" href="#" onclick="go('portfolio')">Explore Full Portfolio</a>
+</div>
+</section>
+<!-- FEATURE: Wedding -->
+<div class="feat rv">
+<div class="feat-img">
+<img alt="Wedding Photography" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1280,c_limit/v1765538857/admin-heaven-studio/heroes/hbjbeajw0g6qbz7zkwdi.webp"/>
+</div>
+<div class="feat-body">
+<span class="eyebrow">Wedding Photography</span>
+<div class="rule"></div>
+<h2 class="heading">Your love story,<br/>told <em>cinematically.</em></h2>
+<p class="body-txt">Your wedding day is the single most important story we will ever have the privilege of telling. Our wedding coverage is comprehensive, deeply personal — from morning preparations to the final dance.</p>
+<a class="btn-o" href="#" onclick="go('services')">Wedding Packages</a>
+</div>
+</div>
+<!-- FEATURE: Maternity (reversed) -->
+<div class="feat rev rv">
+<div class="feat-img">
+<img alt="Maternity Photography" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1280,c_limit/v1765538458/admin-heaven-studio/heroes/fgml6ndj5plvago9o8s6.webp"/>
+</div>
+<div class="feat-body">
+<span class="eyebrow">Maternity Photography</span>
+<div class="rule"></div>
+<h2 class="heading">The miracle of<br/><em>motherhood</em> preserved.</h2>
+<p class="body-txt">A mother's journey is one of the most profound stories ever told. Our maternity sessions are ethereal celebrations — golden-hour outdoor scenes and expert posing that honors this sacred chapter.</p>
+<a class="btn-o" href="#" onclick="go('services')">Maternity Sessions</a>
+</div>
+</div>
+<!-- TESTIMONIALS -->
+<section class="testi">
+<div class="testi-hd rv">
+<span class="eyebrow">Client Stories</span>
+<h2 class="heading">Words from our <em>families</em></h2>
+</div>
+<div class="testi-grid">
+<div class="t-card rv">
+<div class="t-stars">★★★★★</div>
+<p class="t-text">"The maternity shoot was beyond anything I imagined. Every photo tells a story. Heaven Studio made me feel like royalty throughout the entire experience."</p>
+<div class="t-author"><div class="t-av">P</div><div><span class="t-name">Priya Sharma</span><span class="t-svc">Maternity Shoot</span></div></div>
+</div>
+<div class="t-card rv">
+<div class="t-stars">★★★★★</div>
+<p class="t-text">"Our wedding photos are absolutely cinematic. The team captured emotions we didn't even know we were feeling. Truly world-class photographers."</p>
+<div class="t-author"><div class="t-av">R</div><div><span class="t-name">Rahul &amp; Ananya</span><span class="t-svc">Wedding Photography</span></div></div>
+</div>
+<div class="t-card rv">
+<div class="t-stars">★★★★★</div>
+<p class="t-text">"The newborn shoot was handled with so much care and creativity. Our baby looked like a little angel in every frame. Worth every single penny."</p>
+<div class="t-author"><div class="t-av">N</div><div><span class="t-name">Neha Gupta</span><span class="t-svc">Newborn Session</span></div></div>
+</div>
+</div>
+</section>
+<!-- CTA BAND -->
+<section class="cta-band">
+<img alt="" class="cta-band-img" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_1920,c_limit/v1766070693/admin-heaven-studio/heroes/u2r81zt8imtjctzdtpn2.webp"/>
+<div class="cta-band-body rv">
+<span class="eyebrow">Begin Your Journey</span>
+<div class="rule"></div>
+<h2 class="heading cta-band">Ready to create<br/>something <em>timeless?</em></h2>
+<p class="body-txt">Every great story deserves to be beautifully told. Let's create yours together.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+<a class="btn-g" href="https://wa.me/918777759923?text=Hi%20Heaven%20Studio%2C%20I%27d%20like%20to%20book%20a%20session." target="_blank">Chat on WhatsApp</a>
+<a class="btn-o" href="#" onclick="go('contact')">Get in Touch</a>
+</div>
+</div>
+</section>
+</div><!-- /home -->
+<!-- ══════════════ ABOUT ══════════════ -->
+<div class="pg" id="about">
+<div class="pg-hero">
+<img alt="About Heaven Studio" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit/v1765445083/admin-heaven-studio/heroes/wuolcqsdlazmkvxzkp5g.webp"/>
+<div class="pg-hero-body">
+<p class="pg-eyebrow">Who We Are</p>
+<h1 class="pg-title">About <em>Heaven Studio</em></h1>
+</div>
+</div>
+<div class="about-body">
+<div class="about-grid">
+<div class="rv">
+<img alt="Studio" class="about-img-main" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1000,c_limit/v1765451237/admin-heaven-studio/heroes/z5ovmtq2j6u9uwpisom8.webp"/>
+<img alt="Maternity" class="about-img-accent" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_700,c_limit/v1765614874/admin-heaven-studio/heroes/ghu8whobcpvzamrviszi.webp"/>
+<div class="about-stats">
+<div class="about-stat rv"><div class="as-n">500+</div><div class="as-l">Sessions Completed</div></div>
+<div class="about-stat rv"><div class="as-n">7+</div><div class="as-l">Years of Excellence</div></div>
+<div class="about-stat rv"><div class="as-n">98%</div><div class="as-l">Client Satisfaction</div></div>
+<div class="about-stat rv"><div class="as-n">7</div><div class="as-l">Specializations</div></div>
+</div>
+</div>
+<div class="rv">
+<span class="eyebrow">Our Philosophy</span>
+<div class="rule"></div>
+<h2 class="heading">Crafting <em>art</em> from life's most sacred moments.</h2>
+<p class="body-txt">At Heaven Studio, photography is not merely our profession — it is our devotion. Founded with a singular vision to redefine premium photography in Delhi NCR, we have spent years perfecting the intersection of technical mastery and artistic storytelling.</p>
+<p class="body-txt">Our studio in Sector 122, Noida is a sanctuary of creativity — designed to put families, couples, and individuals at complete ease so authentic moments can emerge naturally. We believe the best photographs are never posed; they are discovered.</p>
+<div class="values">
+<div class="v-item rv"><span class="v-num">01</span><div><div class="v-title">Uncompromising Quality</div><p class="v-txt">Every image that leaves our studio meets our exacting standard of technical perfection and artistic merit. We shoot with professional-grade equipment and deliver fully retouched, gallery-quality files.</p></div></div>
+<div class="v-item rv"><span class="v-num">02</span><div><div class="v-title">Genuine Connection</div><p class="v-txt">We invest time in understanding you — your personalities, relationships, and vision — before we ever pick up a camera. This connection is what makes our photographs feel alive.</p></div></div>
+<div class="v-item rv"><span class="v-num">03</span><div><div class="v-title">Timeless Aesthetic</div><p class="v-txt">Trends fade. We craft images with a cinematic, editorial quality that will feel as beautiful decades from now as they do today.</p></div></div>
+</div>
+<div style="margin-top:44px">
+<a class="btn-g" href="https://wa.me/918777759923" target="_blank">Talk to Us on WhatsApp</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════════════ SERVICES ══════════════ -->
+<div class="pg" id="services">
+<div class="pg-hero">
+<img alt="Our Services" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit/v1765442316/admin-heaven-studio/heroes/onfz4b3qqntwwlkyki2h.webp"/>
+<div class="pg-hero-body">
+<p class="pg-eyebrow">What We Offer</p>
+<h1 class="pg-title">Our <em>Services</em></h1>
+</div>
+</div>
+<div class="svc-page-body">
+<div class="svc-list">
+<div class="svc-row rv"><div class="svc-r-num">01</div><div><div class="svc-r-name">Maternity Photoshoot</div><p class="svc-r-desc">A mother's journey is one of the most profound stories ever told. Our maternity sessions are ethereal celebrations — golden-hour outdoor scenes, expert posing guidance, and carefully curated setups. Recommended between 28–34 weeks for the most beautiful results.</p></div><div class="svc-r-tags"><span class="tag">Studio &amp; Outdoor</span><span class="tag">2–3 Hours</span><span class="tag">50+ Edited Images</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">02</div><div><div class="svc-r-name">Newborn Photoshoot</div><p class="svc-r-desc">Captured within the first 15 days of birth, our newborn sessions are safety-first events with custom props and wraps. We preserve those impossibly tiny, impossibly fleeting early days with dreamy, artistic portraits that families treasure forever.</p></div><div class="svc-r-tags"><span class="tag">Studio Session</span><span class="tag">3–4 Hours</span><span class="tag">Best within 15 Days</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">03</div><div><div class="svc-r-name">Kids Photoshoot</div><p class="svc-r-desc">Children are the most authentic subjects — full of unscripted joy and pure emotion. Our sessions are relaxed, playful, and designed to let your child's true personality shine. We specialize in milestone sessions: birthdays, first steps, and everything in between.</p></div><div class="svc-r-tags"><span class="tag">Studio &amp; Outdoor</span><span class="tag">1–2 Hours</span><span class="tag">Milestone Sessions</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">04</div><div><div class="svc-r-name">Wedding Photography</div><p class="svc-r-desc">Your wedding day is the single most important story we will ever have the privilege of telling. Our coverage is cinematic, comprehensive, and deeply personal — from morning preparations to the final celebration. We work in dedicated teams to ensure not a single moment goes uncaptured.</p></div><div class="svc-r-tags"><span class="tag">Full Day</span><span class="tag">2-Photographer Team</span><span class="tag">300+ Edited Images</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">05</div><div><div class="svc-r-name">Pre-Wedding Photoshoot</div><p class="svc-r-desc">Before the ceremony comes the romance. Our pre-wedding sessions are curated experiences — scouted locations, styled outfits, perfect timing — designed to create editorial-quality imagery that tells your love story beautifully. Destination shoots available on request.</p></div><div class="svc-r-tags"><span class="tag">Location Scouted</span><span class="tag">Outdoor &amp; Studio</span><span class="tag">Destination Available</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">06</div><div><div class="svc-r-name">Corporate Photography</div><p class="svc-r-desc">Your brand's visual identity begins with imagery that communicates trust and quality. From executive headshots to team portraits and environmental photography, we create corporate imagery that elevates your brand's presence across all platforms.</p></div><div class="svc-r-tags"><span class="tag">Headshots</span><span class="tag">Team Portraits</span><span class="tag">Brand Identity</span></div></div>
+<div class="svc-row rv"><div class="svc-r-num">07</div><div><div class="svc-r-name">Product &amp; Lifestyle Photography</div><p class="svc-r-desc">Product photography is your silent salesperson. Our sessions combine technical precision with creative direction to produce imagery that stops the scroll and drives conversions — ideal for e-commerce, social media, and brand campaigns.</p></div><div class="svc-r-tags"><span class="tag">E-commerce</span><span class="tag">Social Media</span><span class="tag">Brand Campaigns</span></div></div>
+</div>
+<div class="rv" style="text-align:center;margin-top:72px">
+<span class="eyebrow" style="display:block;margin-bottom:18px">Ready to Begin?</span>
+<a class="btn-g" href="https://wa.me/918777759923?text=Hi%20Heaven%20Studio%2C%20I%27m%20interested%20in%20booking%20a%20session." target="_blank">Enquire on WhatsApp</a>
+</div>
+</div>
+</div>
+<!-- ══════════════ PORTFOLIO ══════════════ -->
+<div class="pg" id="portfolio">
+<div class="pg-hero">
+<img alt="Portfolio" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit/v1765538898/admin-heaven-studio/heroes/pckkjj5ff3whlabxsqlg.webp"/>
+<div class="pg-hero-body">
+<p class="pg-eyebrow">Selected Works</p>
+<h1 class="pg-title">Our <em>Portfolio</em></h1>
+</div>
+</div>
+<div class="port-body">
+<div class="filter-bar">
+<button class="fb on" onclick="filt('all',this)">All Work</button>
+<button class="fb" onclick="filt('maternity',this)">Maternity</button>
+<button class="fb" onclick="filt('newborn',this)">Newborn</button>
+<button class="fb" onclick="filt('kids',this)">Kids</button>
+<button class="fb" onclick="filt('wedding',this)">Wedding</button>
+<button class="fb" onclick="filt('prewedding',this)">Pre-Wedding</button>
+<button class="fb" onclick="filt('family',this)">Family</button>
+</div>
+<div class="port-masonry" id="pgrid">
+<!-- Maternity -->
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765537721/admin-heaven-studio/heroes/vzqwgxtfebjov9ooe0zi.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Golden Bloom</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538349/admin-heaven-studio/heroes/hw89ahddibuwv1ukntwy.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Ethereal Glow</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538458/admin-heaven-studio/heroes/fgml6ndj5plvago9o8s6.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Sacred Chapter</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538414/admin-heaven-studio/heroes/yy98wggtkzbtdrs5v7nz.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Radiance</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538384/admin-heaven-studio/heroes/nbmifadpcexyamz3b4so.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Expecting</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538320/admin-heaven-studio/heroes/ppmiwlhfdyylbkpldnsq.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Soft Morning</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538333/admin-heaven-studio/heroes/ylx4h2mjok6h2wvp2ugp.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Warmth</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538363/admin-heaven-studio/heroes/zfxaervtniftdujeahrf.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Serene</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538307/admin-heaven-studio/heroes/dwmdnm7pnk7coluvqnod.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Blossom</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538427/admin-heaven-studio/heroes/esmbfvvbbmk55dhqtxrf.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Grace</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538473/admin-heaven-studio/heroes/bs48xovti92ct0mheu4m.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Journey</span></div></div>
+<div class="pi" data-cat="maternity"><img alt="Maternity" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538399/admin-heaven-studio/heroes/qbjx7zv4iyr8pqlezs8b.webp"/><div class="pi-over"><span class="pi-cat">Maternity</span><span class="pi-title">Bloom</span></div></div>
+<!-- Newborn -->
+<div class="pi" data-cat="newborn"><img alt="Newborn" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765796242/admin-heaven-studio/heroes/xdvkuyrt6fuhnoxuw9wx.webp"/><div class="pi-over"><span class="pi-cat">Newborn</span><span class="pi-title">First Days of Wonder</span></div></div>
+<!-- Kids -->
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549691/admin-heaven-studio/heroes/tdktcnymqv6j7it9ppzc.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Pure Joy</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549749/admin-heaven-studio/heroes/azo6vqk3yzmwhz8agdfs.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Adventure</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549712/admin-heaven-studio/heroes/luodqjq4iwb4mz5mjee3.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Childhood Dreaming</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549433/admin-heaven-studio/heroes/mrcerdr3fhdzj9aka8kk.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Laughter</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549637/admin-heaven-studio/heroes/erye5q52vwqwea4nqmdm.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Wonder</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549617/admin-heaven-studio/heroes/wotcyphopvlr8aqmcbxr.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Playful</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549669/admin-heaven-studio/heroes/uicazwhqlm6m6vwcvaxz.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Bright Spark</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549787/admin-heaven-studio/heroes/ncqniw2tdfbj4rtfdcwd.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Free Spirit</span></div></div>
+<div class="pi" data-cat="kids"><img alt="Kids" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765549845/admin-heaven-studio/heroes/ikx3pmkwdtd4sjooayvk.webp"/><div class="pi-over"><span class="pi-cat">Kids</span><span class="pi-title">Joyful</span></div></div>
+<!-- Wedding -->
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538931/admin-heaven-studio/heroes/dsz2poffm5rkuv2xt0q3.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">The Ceremony</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538857/admin-heaven-studio/heroes/hbjbeajw0g6qbz7zkwdi.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Together Forever</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538912/admin-heaven-studio/heroes/shbuqdw6gy0bnurcr6n4.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">First Dance</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539354/admin-heaven-studio/heroes/qwj7uvkyaqgvlypcedhr.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Royal Celebration</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538898/admin-heaven-studio/heroes/pckkjj5ff3whlabxsqlg.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Golden Hour</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539329/admin-heaven-studio/heroes/rm8funcw9nn0nq5bdlkf.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Eternal Vows</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539294/admin-heaven-studio/heroes/zgbkad8jtl1jrvrnnofd.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">The Kiss</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538883/admin-heaven-studio/heroes/rxacy4j0xpo8omhzxk44.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Bridal Portraits</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539271/admin-heaven-studio/heroes/mvjxiqheuntg2awvriie.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Celebration</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765538946/admin-heaven-studio/heroes/bhe0ytwsilyklznhkaku.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Candid Joy</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539315/admin-heaven-studio/heroes/fqmabblae2uvgwpk4wxg.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Mandap Moments</span></div></div>
+<div class="pi" data-cat="wedding"><img alt="Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765539365/admin-heaven-studio/heroes/ydcbvtdouiabjle9keum.webp"/><div class="pi-over"><span class="pi-cat">Wedding</span><span class="pi-title">Saat Phere</span></div></div>
+<!-- Pre-Wedding / Family -->
+<div class="pi" data-cat="prewedding"><img alt="Pre-Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442149/admin-heaven-studio/heroes/gcdzxadfibilpyf0dpfc.webp"/><div class="pi-over"><span class="pi-cat">Pre-Wedding</span><span class="pi-title">Love in Delhi</span></div></div>
+<div class="pi" data-cat="prewedding"><img alt="Pre-Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442942/admin-heaven-studio/heroes/v6i6u0us4sdqhp3odx7u.webp"/><div class="pi-over"><span class="pi-cat">Pre-Wedding</span><span class="pi-title">Romance</span></div></div>
+<div class="pi" data-cat="prewedding"><img alt="Pre-Wedding" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442316/admin-heaven-studio/heroes/onfz4b3qqntwwlkyki2h.webp"/><div class="pi-over"><span class="pi-cat">Pre-Wedding</span><span class="pi-title">Soulmates</span></div></div>
+<div class="pi" data-cat="family"><img alt="Family" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765442621/admin-heaven-studio/heroes/acpc9yv7swjauan9ikdp.webp"/><div class="pi-over"><span class="pi-cat">Family</span><span class="pi-title">Together</span></div></div>
+<div class="pi" data-cat="family"><img alt="Family" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765431849/admin-heaven-studio/heroes/sjkgbcyijbgmmmljykca.webp"/><div class="pi-over"><span class="pi-cat">Family</span><span class="pi-title">Bonds</span></div></div>
+<div class="pi" data-cat="family"><img alt="Family" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:good,w_900,c_limit/v1765449846/admin-heaven-studio/heroes/uwrrp2syuhat9s5hnb8b.webp"/><div class="pi-over"><span class="pi-cat">Family</span><span class="pi-title">Portrait</span></div></div>
+</div>
+<div class="rv" style="text-align:center;margin-top:64px">
+<p style="font-family:var(--serif);font-style:italic;color:rgba(247,244,239,.45);font-size:.95rem;margin-bottom:28px">Like what you see? Let's create something beautiful together.</p>
+<a class="btn-g" href="https://wa.me/918777759923" target="_blank">Book Your Session</a>
+</div>
+</div>
+</div>
+<!-- ══════════════ CONTACT ══════════════ -->
+<div class="pg" id="contact">
+<div class="pg-hero">
+<img alt="Contact" loading="lazy" src="https://res.cloudinary.com/du2ro76hf/image/upload/f_auto,q_auto:best,w_1920,c_limit/v1765451205/admin-heaven-studio/heroes/z1nlhf5lp39petstfua8.webp"/>
+<div class="pg-hero-body">
+<p class="pg-eyebrow">Get In Touch</p>
+<h1 class="pg-title">Let's <em>Connect</em></h1>
+</div>
+</div>
+<div class="contact-body">
+<!-- Info -->
+<div class="rv">
+<span class="eyebrow">Find Us</span>
+<div class="rule"></div>
+<div class="cd">
+<div class="cd-icon"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+<div><div class="cd-lbl">Studio Address</div><a class="cd-val" href="https://maps.app.goo.gl/WeLfvuJiGMz5RFeJ6" target="_blank">D-99, Sector 122, Noida, Uttar Pradesh</a></div>
+</div>
+<div class="cd">
+<div class="cd-icon"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.59 2.72h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.4z"></path></svg></div>
+<div><div class="cd-lbl">Phone / WhatsApp</div><a class="cd-val" href="tel:+918777759923">+91 87777 59923</a></div>
+</div>
+<div class="cd">
+<div class="cd-icon"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+<div><div class="cd-lbl">Email</div><a class="cd-val" href="mailto:info@heavenstudio.in">info@heavenstudio.in</a></div>
+</div>
+<div class="cd">
+<div class="cd-icon"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+<div><div class="cd-lbl">Studio Hours</div><div class="cd-val" style="cursor:default">Mon–Sat: 10:00 AM – 7:00 PM<br/>Sunday: By Appointment</div></div>
+</div>
+<div class="social-row">
+<a class="sl" href="https://www.instagram.com/heaven_studio_official" target="_blank" title="Instagram">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><rect height="20" rx="5" width="20" x="2" y="2"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg>
+</a>
+<a class="sl" href="https://www.facebook.com/people/HeavenStudio/100089895375964" target="_blank" title="Facebook">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+</a>
+<a class="sl" href="https://x.com/HeavenStudio24" target="_blank" title="X / Twitter">
+<svg fill="currentColor" height="15" viewbox="0 0 24 24" width="15"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+<a class="sl" href="https://share.google/dLp47e2xiF6OOKn1T" target="_blank" title="Google">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+</a>
+<a class="sl" href="https://wa.me/918777759923" target="_blank" title="WhatsApp">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</a>
+</div>
+<div class="map-wrap">
+<iframe allowfullscreen="" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.1!2d77.3893!3d28.6195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5eb0b0a0001%3A0x1!2sHeaven+Studio%2C+Sector+122%2C+Noida!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"></iframe>
+</div>
+</div>
+<!-- Form -->
+<div class="rv">
+<h2 class="form-h">Send us a <em>message</em></h2>
+<p class="form-sub">Fill in your details and we'll open a WhatsApp conversation — the fastest way to get a response from our team.</p>
+<div class="f2col">
+<div class="fg"><label class="fl">Your Name</label><input class="fi" id="cf-name" placeholder="Priya Sharma" type="text"/></div>
+<div class="fg"><label class="fl">Phone Number</label><input class="fi" id="cf-phone" placeholder="+91 98765 43210" type="tel"/></div>
+</div>
+<div class="fg"><label class="fl">Email Address</label><input class="fi" id="cf-email" placeholder="priya@example.com" type="email"/></div>
+<div class="fg">
+<label class="fl">Service You're Interested In</label>
+<select class="fse" id="cf-service"><option disabled="" selected="" value="">Select a service...</option><option>Maternity Photoshoot</option><option>Newborn Photoshoot</option><option>Kids Photoshoot</option><option>Wedding Photography</option><option>Pre-Wedding Photoshoot</option><option>Corporate Photography</option><option>Product &amp; Lifestyle Photoshoot</option><option>Other / Multiple Services</option></select>
+</div>
+<div class="fg"><label class="fl">Preferred Session Date</label><input class="fi" id="cf-date" placeholder="e.g. May 2025 or flexible" type="text"/></div>
+<div class="fg"><label class="fl">Tell Us About Your Vision</label><textarea class="fta" id="cf-msg" placeholder="Share any details about your session, theme ideas, or questions..."></textarea></div>
+<button class="wa-btn" onclick="sendWA()">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+        Send via WhatsApp
+      </button>
+<p class="wa-note">Opens WhatsApp  ·  No account needed  ·  Instant response during studio hours</p>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer>
+<div class="ft">
+<div>
+<div class="ft-logo">Heaven Studio</div>
+<div class="ft-logo-s">Premium Photography · Noida</div>
+<p class="ft-tag">Where every moment becomes<br/>a timeless masterpiece.</p>
+<div class="ft-social" style="margin-top:24px">
+<a class="sl" href="https://www.instagram.com/heaven_studio_official" target="_blank"><svg fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14"><rect height="20" rx="5" width="20" x="2" y="2"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg></a>
+<a class="sl" href="https://www.facebook.com/people/HeavenStudio/100089895375964" target="_blank"><svg fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+<a class="sl" href="https://x.com/HeavenStudio24" target="_blank"><svg fill="currentColor" height="13" viewbox="0 0 24 24" width="13"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+<a class="sl" href="https://share.google/dLp47e2xiF6OOKn1T" target="_blank"><svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14"><path d="M12 11h8.533c.044.385.067.78.067 1.184 0 5.394-3.614 9.232-8.6 9.232A8.667 8.667 0 0 1 3.333 12.8 8.667 8.667 0 0 1 12 4.133c2.34 0 4.298.852 5.8 2.247l-2.354 2.354C14.533 7.82 13.333 7.2 12 7.2a5.6 5.6 0 0 0 0 11.2c3.014 0 4.84-1.72 5.267-4H12v-3.2z"></path></svg></a>
+<a class="sl" href="https://wa.me/918777759923" target="_blank"><svg fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
+</div>
+</div>
+<div>
+<div class="ft-col-h">Navigation</div>
+<ul class="ft-links">
+<li><a href="#" onclick="go('home')">Home</a></li>
+<li><a href="#" onclick="go('about')">About Us</a></li>
+<li><a href="#" onclick="go('services')">Services</a></li>
+<li><a href="#" onclick="go('portfolio')">Portfolio</a></li>
+<li><a href="#" onclick="go('contact')">Contact</a></li>
+</ul>
+</div>
+<div>
+<div class="ft-col-h">Contact</div>
+<ul class="ft-links">
+<li><a href="tel:+918777759923">+91 87777 59923</a></li>
+<li><a href="mailto:info@heavenstudio.in">info@heavenstudio.in</a></li>
+<li><a href="https://heavenstudio.in" target="_blank">heavenstudio.in</a></li>
+<li><a href="https://maps.app.goo.gl/WeLfvuJiGMz5RFeJ6" target="_blank">D-99, Sector 122, Noida</a></li>
+</ul>
+</div>
+</div>
+<div class="fb2">
+<p class="ft-copy">© 2025 Heaven Studio. All rights reserved.  ·  D-99, Sector 122, Noida</p>
+<p class="ft-made">Crafted with love for every moment.</p>
+</div>
+</footer>
+<script>
+// Cursor
+const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+
+// Nav scroll
+const nb=document.getElementById('nb');
+window.addEventListener('scroll',()=>nb.classList.toggle('s',scrollY>60));
+
+// Hamburger
+function toggleMob(){const h=document.getElementById('ham'),m=document.getElementById('mob');h.classList.toggle('o');m.classList.toggle('o')}
+
+// Page routing
+function go(id){
+  document.querySelectorAll('.pg').forEach(p=>{p.classList.remove('on');p.style.display='none'});
+  const pg=document.getElementById(id);
+  pg.style.display='block';
+  pg.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(reveal,120);
+  return false;
+}
+
+// Scroll reveal
+function reveal(){
+  const els=document.querySelectorAll('.rv:not(.v)');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*70);obs.unobserve(e.target)}
+    });
+  },{threshold:.1});
+  els.forEach(el=>obs.observe(el));
+}
+reveal();
+
+// Portfolio filter
+function filt(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pi').forEach(item=>{
+    item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
+  });
+}
+
+// WhatsApp form
+function sendWA(){
+  const n=document.getElementById('cf-name').value.trim();
+  const p=document.getElementById('cf-phone').value.trim();
+  const s=document.getElementById('cf-service').value;
+  const d=document.getElementById('cf-date').value.trim();
+  const m=document.getElementById('cf-msg').value.trim();
+  let t=`Hello Heaven Studio!\n\nI'd like to enquire about a photography session.\n\n`;
+  if(n)t+=`*Name:* ${n}\n`;
+  if(p)t+=`*Phone:* ${p}\n`;
+  if(s)t+=`*Service:* ${s}\n`;
+  if(d)t+=`*Preferred Date:* ${d}\n`;
+  if(m)t+=`\n*Message:* ${m}`;
+  t+=`\n\nLooking forward to hearing from you!`;
+  window.open(`https://wa.me/918777759923?text=${encodeURIComponent(t)}`,'_blank');
+}
+
+// Prevent # navigation
+document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>
