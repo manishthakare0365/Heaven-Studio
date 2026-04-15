@@ -117,23 +117,34 @@
     /* ============================================================
        PLACEHOLDER (for services without real photos)
     ============================================================ */
+    /* Service placeholders — dark, intentional, premium */
     .ph {
-      background: linear-gradient(145deg,#EDEBE6 0%,#DDD8D0 45%,#CCC4B8 100%);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
+      background: linear-gradient(155deg, #1A1612 0%, #2C2420 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; gap: 1.1rem;
     }
     .ph::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.25) 0%,transparent 60%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(184,154,92,.08) 0%, transparent 60%);
+    }
+    /* decorative diagonal lines */
+    .ph::after {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent 0, transparent 28px,
+        rgba(184,154,92,.03) 28px, rgba(184,154,92,.03) 29px
+      );
     }
     .ph .pl {
-      position: relative; z-index: 1; font-family: var(--font-b);
-      font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(80,70,60,.6); border: 1px solid rgba(80,70,60,.2); padding: .28rem .75rem;
+      position: relative; z-index: 1; font-family: var(--font-d);
+      font-size: 1.05rem; font-style: italic; font-weight: 400; letter-spacing: .07em;
+      color: rgba(184,154,92,.85); border: 1px solid rgba(184,154,92,.22);
+      padding: .5rem 1.5rem;
     }
-    .ph.b { background: linear-gradient(158deg,#E8E4DC,#D4CCC0,#C0B4A4); }
-    .ph.c { background: linear-gradient(122deg,#EDEAE3,#DDD6CC,#CAC0B4); }
-    .ph.d { background: linear-gradient(138deg,#E5E0D8,#D0C8BC,#BCAE9E); }
+    .ph.b { background: linear-gradient(155deg, #13100F, #221B17); }
+    .ph.c { background: linear-gradient(155deg, #161312, #201A17); }
+    .ph.d { background: linear-gradient(155deg, #191512, #24201B); }
 
     /* ============================================================
        FADE-UP
@@ -265,23 +276,23 @@
     }
     .hero-badge .gs { color: var(--gold); }
 
+    /* Hero right — full-bleed 2-panel split, zero empty space */
     .hero-right {
       position: relative; height: 100%; min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 3rem; background: var(--white);
+      overflow: hidden;
     }
-    .hero-photos { position: relative; width: 88%; height: 78vh; max-height: 660px; }
-    .hp-a {
-      position: absolute; top: 4%; left: 0; width: 70%; height: 62%;
-      overflow: hidden; box-shadow: 0 20px 60px rgba(17,16,16,.12);
-      opacity: 0; animation: fadeUp 1s .6s ease forwards;
+    .hero-photos {
+      position: absolute; inset: 0;
+      display: grid; grid-template-columns: 3fr 2fr; gap: 3px;
+      background: var(--border);
     }
-    .hp-b {
-      position: absolute; bottom: 4%; right: 0; width: 66%; height: 58%;
-      transform: rotate(2deg); overflow: hidden;
-      box-shadow: 0 20px 60px rgba(17,16,16,.12);
-      opacity: 0; animation: fadeUp 1s .8s ease forwards;
+    .hp-a, .hp-b { position: relative; overflow: hidden; }
+    .hp-a img, .hp-b img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center top; display: block;
     }
+    .hp-a { opacity: 0; animation: fadeIn 1.1s .5s ease forwards; }
+    .hp-b { opacity: 0; animation: fadeIn 1.1s .75s ease forwards; }
 
     @keyframes fadeIn  { from{opacity:0}         to{opacity:1} }
     @keyframes fadeUp  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
@@ -378,12 +389,13 @@
     .g-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: .9rem;
+      gap: 5px;
     }
-    .g-cell { overflow: hidden; position: relative; }
-    .g-cell.port { aspect-ratio: 3/4; }
-    .g-cell.sq   { aspect-ratio: 1/1; }
-    .g-cell.wide { aspect-ratio: 4/3; }
+    /* All cells same 3:4 portrait ratio — no height-mismatch rows */
+    .g-cell {
+      overflow: hidden; position: relative;
+      aspect-ratio: 3/4; background: #1A1612;
+    }
     .g-cell img {
       width: 100%; height: 100%; object-fit: cover;
       object-position: center top; display: block;
@@ -391,7 +403,7 @@
     }
     .g-cell.mid img  { object-position: center center; }
     .g-cell.bot img  { object-position: center bottom; }
-    .g-cell:hover img { transform: scale(1.04); }
+    .g-cell:hover img { transform: scale(1.06); }
     .g-cell.hidden { display: none; }
 
     .g-foot { text-align: center; margin-top: 2.5rem; }
@@ -598,8 +610,8 @@
       .hero-left { padding: 3rem 2rem 2rem; text-align: center; }
       .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
       .hero-ctas { justify-content: center; }
-      .hero-right { min-height: 56vw; height: auto; max-height: 500px; padding: 2rem; }
-      .hero-photos { width: 90%; height: 100%; }
+      .hero-right { min-height: 50vw; height: 50vw; max-height: 500px; }
+      .hero-photos { position: absolute; inset: 0; width: 100%; height: 100%; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-photo { height: 400px; }
       .svc-grid { grid-template-columns: repeat(2,1fr); }
@@ -627,12 +639,11 @@
       .nav.scrolled { padding: .85rem 1.25rem; }
       .hero-left { padding: 2.5rem 1.25rem 2rem; }
       .hero-h1 { font-size: 2.7rem; }
-      .hero-right { max-height: 55vw; }
+      .hero-right { height: 55vw; max-height: 380px; }
       .about-photo { height: 280px; }
       .svc-grid { grid-template-columns: 1fr; }
       .svc-card-7 { grid-column: auto; }
       .g-grid { grid-template-columns: repeat(2,1fr); }
-      .g-cell.port { aspect-ratio: 2/3; }
       .diff-grid { grid-template-columns: 1fr; }
       .diff-grid .diff-card:last-child { grid-column: auto; }
       .testi-card { min-width: calc(100% - .9rem); }
@@ -703,10 +714,10 @@
   <div class="hero-right">
     <div class="hero-photos">
       <div class="hp-a">
-        <img class="si" src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/160.jpg" alt="Maternity Photography — Heaven Studio Noida" loading="eager" decoding="sync">
+        <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/180.jpg" alt="Maternity Photography — Heaven Studio Noida" loading="eager" decoding="sync">
       </div>
       <div class="hp-b">
-        <img class="si mid" src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/3.png" alt="Kids Photography — Heaven Studio Noida" loading="eager" decoding="sync">
+        <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/40.jpg" alt="Maternity Photography — Heaven Studio Noida" style="object-position:center center;" loading="eager" decoding="sync">
       </div>
     </div>
   </div>
@@ -886,78 +897,78 @@
     <div class="g-grid fu d2">
 
       <!-- MATERNITY -->
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/160.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/30.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/180.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/20.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/50.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/100.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/140.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/80.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/170.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/40.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/190.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="maternity">
+      <div class="g-cell" data-cat="maternity">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/60.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
       </div>
 
       <!-- KIDS -->
-      <div class="g-cell port mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/3.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/9.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="kids">
+      <div class="g-cell" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/11.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/8.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port" data-cat="kids">
+      <div class="g-cell" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/17.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/6.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/15.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq" data-cat="kids">
+      <div class="g-cell" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/18.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/22.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/5.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell port mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/24.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
-      <div class="g-cell sq mid" data-cat="kids">
+      <div class="g-cell mid" data-cat="kids">
         <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%201/20.png" alt="Kids Photography" loading="lazy" decoding="async">
       </div>
 
