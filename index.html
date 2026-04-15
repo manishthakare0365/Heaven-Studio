@@ -598,61 +598,155 @@
     .fl-wa svg { width: 26px; height: 26px; fill: #fff; }
 
     /* ============================================================
-       RESPONSIVE — TABLET
+       RESPONSIVE — LARGE DESKTOP  (≥1400px)
     ============================================================ */
-    @media (max-width:1023px) {
-      :root { --pad: 5rem 0; }
-      .nav-links, .nav-cta-wrap { display: none; }
-      .nav-burger { display: flex; }
-      .nav { padding: 1.3rem 1.8rem; }
-      .nav.scrolled { padding: .9rem 1.8rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 3rem 2rem 2rem; text-align: center; }
-      .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
-      .hero-ctas { justify-content: center; }
-      .hero-right { min-height: 50vw; height: 50vw; max-height: 500px; }
-      .hero-photos { position: absolute; inset: 0; width: 100%; height: 100%; }
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-photo { height: 400px; }
-      .svc-grid { grid-template-columns: repeat(2,1fr); }
-      .svc-card-7 { grid-column: 1 / 2; }
-      .g-grid { grid-template-columns: repeat(3,1fr); }
-      .diff-grid { grid-template-columns: 1fr 1fr; }
-      .diff-grid .diff-card:last-child { grid-column: 1/-1; }
-      .proc-row { flex-direction: column; gap: 2rem; }
-      .proc-row::before { display: none; }
-      .proc-step { display: flex; align-items: flex-start; text-align: left; gap: 1.5rem; }
-      .proc-num { margin: 0; flex-shrink: 0; }
-      .testi-card { min-width: calc(50% - .9rem); }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .footer-main { grid-template-columns: 1fr 1fr; }
-      .footer-main > :first-child { grid-column: 1/-1; }
+    @media (min-width:1400px) {
+      :root { --mw: 1320px; --pad: 8rem 0; }
     }
 
     /* ============================================================
-       RESPONSIVE — MOBILE
+       RESPONSIVE — TABLET LANDSCAPE  (768px – 1023px)
     ============================================================ */
-    @media (max-width:767px) {
-      :root { --pad: 4rem 0; }
-      .wrap { padding: 0 1.25rem; }
-      .nav { padding: 1.1rem 1.25rem; }
-      .nav.scrolled { padding: .85rem 1.25rem; }
-      .hero-left { padding: 2.5rem 1.25rem 2rem; }
-      .hero-h1 { font-size: 2.7rem; }
-      .hero-right { height: 55vw; max-height: 380px; }
-      .about-photo { height: 280px; }
-      .svc-grid { grid-template-columns: 1fr; }
-      .svc-card-7 { grid-column: auto; }
-      .g-grid { grid-template-columns: repeat(2,1fr); }
-      .diff-grid { grid-template-columns: 1fr; }
-      .diff-grid .diff-card:last-child { grid-column: auto; }
-      .testi-card { min-width: calc(100% - .9rem); }
-      .footer-main { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-main > :first-child { grid-column: auto; }
-      .f-btm { flex-direction: column; align-items: flex-start; }
-      .about-stats { gap: 1.5rem; }
+    @media (max-width:1023px) {
+      :root { --pad: 5rem 0; }
+      /* NAV */
+      .nav-links, .nav-cta-wrap { display: none; }
+      .nav-burger { display: flex; }
+      .nav { padding: 1.2rem 1.8rem; }
+      .nav.scrolled { padding: .85rem 1.8rem; }
+      /* HERO */
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 3rem 2.5rem; text-align: center; }
+      .hero-sub { max-width: 520px; margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-badge { display: inline-flex; }
+      .hero-right { height: 52vw; min-height: 260px; max-height: 520px; }
+      /* ABOUT */
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo { height: 440px; }
+      /* SERVICES */
+      .svc-grid { grid-template-columns: repeat(2,1fr); gap: 1.2rem; }
+      .svc-card-7 { grid-column: 1 / 2; }
+      /* GALLERY */
+      .g-grid { grid-template-columns: repeat(3,1fr); }
+      /* DIFFERENCE */
+      .diff-grid { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+      .diff-grid .diff-card:last-child { grid-column: 1/-1; }
+      /* PROCESS */
+      .proc-row { flex-direction: column; gap: 2.5rem; }
+      .proc-row::before { display: none; }
+      .proc-step { display: flex; align-items: flex-start; text-align: left; gap: 1.8rem; }
+      .proc-num { margin: 0; flex-shrink: 0; }
+      /* TESTIMONIALS */
+      .testi-card { min-width: calc(50% - .9rem); }
+      /* CONTACT */
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      /* FOOTER */
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-main > :first-child { grid-column: 1/-1; margin-bottom: .5rem; }
     }
 
+    /* ============================================================
+       RESPONSIVE — MOBILE PORTRAIT  (≤767px)
+    ============================================================ */
+    @media (max-width:767px) {
+      :root { --pad: 3.5rem 0; }
+      .wrap { padding: 0 1.2rem; }
+      /* NAV */
+      .nav { padding: 1rem 1.2rem; }
+      .nav.scrolled { padding: .75rem 1.2rem; }
+      /* MOBILE MENU — smaller type */
+      .mob-menu a { font-size: 1.9rem; }
+      .mob-menu { gap: 1.5rem; }
+      /* HERO */
+      .hero-left { padding: 2rem 1.2rem 1.5rem; }
+      .hero-ey { font-size: .6rem; margin-bottom: 1rem; }
+      .hero-h1 { font-size: clamp(2.1rem, 9vw, 2.9rem); margin-bottom: 1.4rem; }
+      .hero-sub { font-size: .9rem; margin-bottom: 2rem; max-width: 100%; }
+      .hero-ctas { gap: .7rem; }
+      .hero-ctas .btn { font-size: .63rem; padding: .8rem 1.6rem; }
+      .hero-badge { font-size: .63rem; padding: .45rem .85rem; }
+      .hero-right { height: 58vw; max-height: 340px; min-height: 200px; }
+      /* ABOUT */
+      .about-photo { height: 300px; }
+      .about-stats { gap: 1.4rem; }
+      .stn { font-size: 1.65rem; }
+      /* SERVICES */
+      .svc-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .svc-card-7 { grid-column: auto; }
+      .svc-name { font-size: 1.2rem; }
+      /* section headings */
+      .sec-hdr { margin-bottom: 2.5rem; }
+      h2 { font-size: clamp(1.65rem, 5.5vw, 2.4rem); }
+      /* GALLERY */
+      .gallery .sec-hdr { margin-bottom: 1.8rem; }
+      .g-grid { grid-template-columns: repeat(2,1fr); gap: 3px; }
+      .g-tabs { gap: .35rem; margin-bottom: 1.8rem; }
+      .g-tab { font-size: .59rem; padding: .5rem 1rem; letter-spacing: .1em; }
+      .g-foot { margin-top: 1.8rem; }
+      /* DIFFERENCE */
+      .diff-grid { grid-template-columns: 1fr; gap: .8rem; }
+      .diff-grid .diff-card:last-child { grid-column: auto; }
+      .diff-card { padding: 2rem 1.5rem; }
+      /* PROCESS */
+      .proc-step { gap: 1.2rem; }
+      .proc-num { width: 46px; height: 46px; font-size: .9rem; }
+      .proc-title { font-size: 1.05rem; }
+      .proc-desc { font-size: .77rem; }
+      /* TESTIMONIALS */
+      .testi-card { min-width: calc(100% - .9rem); padding: 1.8rem 1.5rem; }
+      .t-quote { font-size: .98rem; }
+      /* FAQ */
+      .faq-qt { font-size: 1rem; }
+      .faq .sec-hdr { margin-bottom: 2.5rem; }
+      /* CONTACT */
+      .contact-grid { gap: 2.5rem; }
+      .cmap { height: 200px; }
+      .fg input, .fg select, .fg textarea { font-size: .85rem; padding: .78rem .9rem; }
+      /* FOOTER */
+      .footer { padding: 2.5rem 0 0; }
+      .footer-main { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 2rem; }
+      .footer-main > :first-child { grid-column: auto; }
+      .f-btm { flex-direction: column; align-items: flex-start; gap: .5rem; padding: 1.2rem 0; }
+      .f-copy, .f-gr { font-size: .68rem; }
+      /* FLOATING BUTTONS */
+      .fl-btns { bottom: 1.2rem; right: 1.2rem; gap: .5rem; }
+      .fl-btn { width: 46px; height: 46px; }
+      .fl-wa svg { width: 22px; height: 22px; }
+      .fl-call svg { width: 18px; height: 18px; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — SMALL PHONE  (≤480px)
+    ============================================================ */
+    @media (max-width:480px) {
+      :root { --pad: 2.8rem 0; }
+      .wrap { padding: 0 .95rem; }
+      .hero-h1 { font-size: clamp(1.85rem, 10vw, 2.4rem); }
+      .hero-right { height: 66vw; max-height: 290px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; max-width: 280px; text-align: center; }
+      .about-photo { height: 260px; }
+      .about-stats { gap: 1.2rem; }
+      .stn { font-size: 1.5rem; }
+      h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
+      .diff-card { padding: 1.7rem 1.2rem; }
+      .testi-card { padding: 1.5rem 1.1rem; }
+      .t-quote { font-size: .92rem; }
+      .g-tab { font-size: .56rem; padding: .45rem .8rem; }
+      .faq-qt { font-size: .95rem; }
+      .proc-num { width: 42px; height: 42px; font-size: .85rem; }
+      /* footer nav list inline on very small */
+      .f-col ul { flex-direction: row; flex-wrap: wrap; gap: .5rem 1.2rem; }
+      .f-col ul a { font-size: .78rem; }
+      .soc-i { width: 34px; height: 34px; }
+      .fl-btns { bottom: 1rem; right: 1rem; }
+      .fl-btn { width: 42px; height: 42px; }
+    }
+
+    /* ============================================================
+       TOUCH / NO-HOVER — disable custom cursor
+    ============================================================ */
     @media (hover:none) {
       .csr-dot, .csr-ring { display: none; }
       body { cursor: auto; }
