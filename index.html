@@ -216,20 +216,53 @@
     .nav-burger.open span:nth-child(2) { opacity: 0; }
     .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+    /* ── Mobile menu — premium white overlay ── */
     .mob-menu {
-      position: fixed; inset: 0; background: var(--ink); z-index: 999;
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 2rem;
+      position: fixed; inset: 0; background: var(--white); z-index: 999;
+      display: flex; flex-direction: column;
+      padding-top: 68px;          /* clear fixed nav bar */
       transform: translateY(-100%);
       transition: transform .5s cubic-bezier(.77,0,.175,1);
     }
     .mob-menu.open { transform: translateY(0); }
-    .mob-menu a {
-      font-family: var(--font-d); font-size: 2.4rem; font-weight: 300;
-      color: #fff; letter-spacing: .04em; transition: color .2s;
+
+    /* Each nav link fills an equal slice of the remaining height */
+    .mob-menu a.ml {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-d); font-size: clamp(1.4rem, 5.5vw, 2rem);
+      font-weight: 300; letter-spacing: .06em; color: var(--ink);
+      border-top: 1px solid var(--border);
+      position: relative; text-decoration: none;
+      transition: color .25s, background .25s;
     }
-    .mob-menu a:hover { color: var(--gold); }
-    .mob-menu .mm-cta { margin-top: .8rem; }
+    /* Gold left-bar swipes in on hover/touch */
+    .mob-menu a.ml::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--gold);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform .28s cubic-bezier(.77,0,.175,1);
+    }
+    .mob-menu a.ml:hover,
+    .mob-menu a.ml:active {
+      color: var(--gold);
+      background: rgba(184,154,92,.04);
+    }
+    .mob-menu a.ml:hover::before,
+    .mob-menu a.ml:active::before { transform: scaleY(1); }
+
+    /* Full-width gold CTA pinned to bottom */
+    .mob-menu .mm-cta {
+      flex-shrink: 0;
+      display: flex !important; align-items: center; justify-content: center;
+      height: 60px; padding: 0 2rem !important;
+      background: var(--gold); color: #fff !important;
+      font-family: var(--font-b); font-size: .72rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      border: none; border-radius: 0; text-decoration: none;
+      transition: background .2s;
+    }
+    .mob-menu .mm-cta:hover { background: var(--gold-lt); }
 
     /* ============================================================
        2. HERO — premium white
@@ -655,9 +688,6 @@
       /* NAV */
       .nav { padding: 1rem 1.2rem; }
       .nav.scrolled { padding: .75rem 1.2rem; }
-      /* MOBILE MENU — smaller type */
-      .mob-menu a { font-size: 1.9rem; }
-      .mob-menu { gap: 1.5rem; }
       /* HERO */
       .hero-left { padding: 2rem 1.2rem 1.5rem; }
       .hero-ey { font-size: .6rem; margin-bottom: 1rem; }
