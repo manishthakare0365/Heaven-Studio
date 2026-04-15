@@ -227,35 +227,40 @@
 
     /* Services dropdown */
     .has-dd { position: relative; }
-    .has-dd > a { display: flex; align-items: center; gap: .3rem; }
+    /* hover-bridge: fills the gap so cursor stays on .has-dd while moving to dropdown */
+    .has-dd::after {
+      content: ''; position: absolute; bottom: -.85rem;
+      left: -1rem; right: -1rem; height: .9rem;
+    }
+    .has-dd > a { display: inline-flex; align-items: center; gap: .3rem; }
     .dd-caret {
       display: inline-block; width: 0; height: 0;
       border-left: 3.5px solid transparent; border-right: 3.5px solid transparent;
-      border-top: 4px solid currentColor; transition: transform .25s;
-      margin-top: 1px;
+      border-top: 4px solid currentColor; transition: transform .28s;
+      margin-top: 1px; flex-shrink: 0;
     }
     .has-dd:hover .dd-caret, .has-dd.dd-open .dd-caret { transform: rotate(180deg); }
     .nav-dd {
-      position: absolute; top: calc(100% + 1.2rem); left: 50%;
-      transform: translateX(-50%) translateY(-8px);
-      min-width: 210px; background: var(--white);
+      position: absolute; top: calc(100% + .75rem); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 200px; background: var(--white);
       border: 1px solid var(--border);
-      box-shadow: 0 16px 40px rgba(17,16,16,.1);
+      box-shadow: 0 16px 36px rgba(17,16,16,.09);
       padding: .5rem 0; list-style: none; z-index: 200;
       opacity: 0; pointer-events: none;
-      transition: opacity .22s ease, transform .22s ease;
+      transition: opacity .2s ease, transform .2s ease;
     }
     .has-dd:hover .nav-dd, .has-dd.dd-open .nav-dd {
       opacity: 1; pointer-events: auto;
       transform: translateX(-50%) translateY(0);
     }
     .nav-dd li a {
-      display: block; padding: .55rem 1.4rem;
+      display: block; padding: .5rem 1.3rem;
       font-size: .68rem; color: var(--text);
       letter-spacing: .05em; text-transform: none;
       transition: color .2s, background .2s;
     }
-    .nav-dd li a::after { display: none; }
+    .nav-dd li a::after { display: none !important; }
     .nav-dd li a:hover { color: var(--gold); background: rgba(184,154,92,.05); }
 
     /* ── Mobile menu — premium white overlay ── */
@@ -322,9 +327,14 @@
 
     .hero-left { padding: 5rem 3.5rem 5rem 5rem; position: relative; z-index: 2; }
     .hero-ey {
-      font-size: .64rem; font-weight: 500; letter-spacing: .22em;
+      display: inline-flex; align-items: center; gap: .75rem;
+      font-size: .62rem; font-weight: 500; letter-spacing: .22em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 1.6rem;
       opacity: 0; animation: fadeIn .8s .3s ease forwards;
+    }
+    .hero-ey::before, .hero-ey::after {
+      content: ''; flex: 0 0 22px; height: 1px;
+      background: currentColor; opacity: .5;
     }
     .hero-h1 {
       font-family: var(--font-d); font-size: clamp(3.2rem, 6vw, 5.6rem);
@@ -972,7 +982,7 @@
 <!-- ============================================================
      SERVICES
 ============================================================ -->
-<section class="services" id="services" data-pg="services">
+<section class="services" id="services" data-pg="home services">
   <div class="wrap">
     <div class="sec-hdr fu">
       <span class="eyebrow">What We Do</span>
@@ -1071,7 +1081,7 @@
 <!-- ============================================================
      GALLERY — tabbed grid with all real photos
 ============================================================ -->
-<section class="gallery" id="gallery" data-pg="portfolio">
+<section class="gallery" id="gallery" data-pg="home portfolio">
   <div class="wrap">
     <div class="sec-hdr fu">
       <span class="eyebrow">Our Work</span>
@@ -1299,7 +1309,7 @@
 <!-- ============================================================
      FAQ
 ============================================================ -->
-<section class="faq" id="faq" data-pg="contact">
+<section class="faq" id="faq" data-pg="home contact">
   <div class="wrap">
     <div class="sec-hdr fu">
       <span class="eyebrow">Common Questions</span>
@@ -1338,7 +1348,7 @@
 <!-- ============================================================
      CONTACT
 ============================================================ -->
-<section class="contact" id="contact" data-pg="contact">
+<section class="contact" id="contact" data-pg="home contact">
   <div class="wrap">
     <div class="sec-hdr fu">
       <span class="eyebrow">Get In Touch</span>
@@ -1552,15 +1562,28 @@
     });
   });
 
-  /* SERVICES DROPDOWN — desktop keyboard / click support */
+  /* SERVICES DROPDOWN — click the caret/arrow to toggle; hover still works via CSS */
   var ddItem=document.querySelector('.has-dd');
   if(ddItem){
-    ddItem.addEventListener('keydown',function(e){
+    var ddCaret=ddItem.querySelector('.dd-caret');
+    /* click the caret to toggle dropdown (extra affordance) */
+    if(ddCaret){
+      ddCaret.addEventListener('click',function(e){
+        e.preventDefault(); e.stopPropagation();
+        ddItem.classList.toggle('dd-open');
+      });
+    }
+    /* Esc closes */
+    document.addEventListener('keydown',function(e){
       if(e.key==='Escape') ddItem.classList.remove('dd-open');
     });
-    /* close when clicking elsewhere */
+    /* click outside closes */
     document.addEventListener('click',function(e){
       if(!ddItem.contains(e.target)) ddItem.classList.remove('dd-open');
+    });
+    /* dropdown links close on click */
+    ddItem.querySelectorAll('.nav-dd a').forEach(function(a){
+      a.addEventListener('click',function(){ ddItem.classList.remove('dd-open'); });
     });
   }
 
