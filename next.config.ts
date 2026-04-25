@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
   images: {
-    // Local images are optimized by default, no extra config needed
+    unoptimized: true,
   },
 };
 
