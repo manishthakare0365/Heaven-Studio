@@ -60,25 +60,22 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F9F8F5] border-t border-[#E5DDD2]">
+    <footer className="bg-[#F9F8F5] border-t border-[#D4C9BE]">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-3 mb-4">
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[#B89A5C]">
                 <circle cx="14" cy="14" r="13" stroke="currentColor" strokeWidth="1.5" />
                 <circle cx="14" cy="14" r="5" stroke="currentColor" strokeWidth="1.5" />
                 <path d="M10 8 L14 4 L18 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <div className="flex flex-col leading-none">
-                <span
-                  className="text-[#111010] font-medium tracking-[0.18em]"
-                  style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem" }}
-                >
+                <span className="font-display text-[#111010] font-medium tracking-[0.18em] text-[1.05rem]">
                   HEAVEN
                 </span>
-                <span className="text-[#7A756F] tracking-[0.3em] text-[0.55rem] uppercase">
+                <span className="text-[#7A756F] tracking-[0.35em] text-[0.65rem] uppercase">
                   STUDIO
                 </span>
               </div>
@@ -94,17 +91,15 @@ export default function Footer() {
 
           {/* Navigate */}
           <div>
-            <h4
-              className="text-[#111010] font-medium tracking-widest text-xs uppercase mb-5"
-            >
+            <h4 className="text-[#111010] font-medium tracking-widest text-[0.7rem] uppercase mb-5">
               Navigate
             </h4>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[#7A756F] text-sm hover:text-[#B89A5C] transition-colors"
+                  className="text-[#7A756F] text-sm hover:text-[#B89A5C] hover:underline underline-offset-4 decoration-[#B89A5C] transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -114,9 +109,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4
-              className="text-[#111010] font-medium tracking-widest text-xs uppercase mb-5"
-            >
+            <h4 className="text-[#111010] font-medium tracking-widest text-[0.7rem] uppercase mb-5">
               Connect
             </h4>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -127,13 +120,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-full border border-[#E5DDD2] flex items-center justify-center text-[#B89A5C] hover:bg-[#B89A5C] hover:text-white hover:border-[#B89A5C] transition-colors duration-200"
+                  className="w-10 h-10 rounded-full border border-[#D4C9BE] flex items-center justify-center text-[#B89A5C] hover:bg-[#B89A5C] hover:text-white hover:border-[#B89A5C] hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
                 >
                   {s.icon}
                 </a>
               ))}
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <a href="tel:+918777759923" className="text-[#7A756F] text-sm hover:text-[#B89A5C] transition-colors">
                 +91 87777 59923
               </a>
@@ -149,7 +142,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#E5DDD2] py-5">
+      <div className="border-t border-[#D4C9BE] py-5">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[#7A756F] text-xs">
             © {new Date().getFullYear()} Heaven Studio, Noida. All rights reserved.

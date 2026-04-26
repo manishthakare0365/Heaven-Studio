@@ -77,44 +77,53 @@ export default function FAQ() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             Questions & Answers.
           </h2>
         </div>
 
         {/* Accordion */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="border border-[#E5DDD2] rounded-lg overflow-hidden"
+              className={`border rounded-lg overflow-hidden transition-colors duration-200 ${
+                open === i
+                  ? "border-[#B89A5C]/50 shadow-sm"
+                  : "border-[#E5DDD2]"
+              }`}
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center gap-4 px-6 py-5 text-left bg-[#F9F8F5] hover:bg-[#F0EDE6] transition-colors"
+                className={`group w-full flex items-center gap-4 px-6 py-5 text-left transition-colors duration-200 ${
+                  open === i ? "bg-[#FDFAF6]" : "bg-[#F9F8F5] hover:bg-[#F0EDE6]"
+                }`}
               >
+                {/* FAQ icon */}
                 <span className="text-[#B89A5C] shrink-0">{faq.icon}</span>
-                <span
-                  className="flex-1 text-[#111010] font-medium"
-                  style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem" }}
-                >
+
+                {/* Question — sans-serif, functional */}
+                <span className="flex-1 text-[#111010] font-medium text-base">
                   {faq.q}
                 </span>
-                <motion.span
-                  animate={{ rotate: open === i ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-[#B89A5C] shrink-0"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </motion.span>
+
+                {/* Chevron in circle */}
+                <span className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                  open === i ? "bg-[#B89A5C]/15" : "bg-[#F0EDE6] group-hover:bg-[#B89A5C]/10"
+                }`}>
+                  <motion.span
+                    animate={{ rotate: open === i ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-[#B89A5C] flex items-center justify-center"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </motion.span>
+                </span>
               </button>
 
               <AnimatePresence initial={false}>
@@ -127,8 +136,10 @@ export default function FAQ() {
                     transition={{ duration: 0.25, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-5 pt-3 text-[#7A756F] leading-relaxed text-sm">
-                      {faq.a}
+                    <div className="px-6 pb-6 pt-4 border-t border-[#E5DDD2]">
+                      <p className="text-[#7A756F] leading-relaxed text-base">
+                        {faq.a}
+                      </p>
                     </div>
                   </motion.div>
                 )}

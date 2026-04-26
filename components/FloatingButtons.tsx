@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function FloatingButtons() {
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+    <div className="fixed bottom-8 right-8 z-40 flex flex-col gap-3">
       {/* WhatsApp */}
       <motion.a
         href="https://wa.me/918777759923"
@@ -14,8 +14,9 @@ export default function FloatingButtons() {
         initial={{ opacity: 0, x: 60 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        className="w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg"
+        whileHover={{ scale: 1.12, y: -2 }}
+        whileTap={{ scale: 0.96 }}
+        className="rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md hover:shadow-xl transition-shadow duration-200"
         style={{ width: "52px", height: "52px" }}
       >
         <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
@@ -30,8 +31,9 @@ export default function FloatingButtons() {
         initial={{ opacity: 0, x: 60 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.0, duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        className="rounded-full bg-white border border-[#E5DDD2] text-[#B89A5C] flex items-center justify-center shadow-lg"
+        whileHover={{ scale: 1.12, y: -2 }}
+        whileTap={{ scale: 0.96 }}
+        className="rounded-full bg-white border border-[#B89A5C]/60 text-[#B89A5C] flex items-center justify-center shadow-md hover:shadow-xl transition-shadow duration-200"
         style={{ width: "52px", height: "52px" }}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

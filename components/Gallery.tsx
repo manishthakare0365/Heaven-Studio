@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
@@ -64,10 +65,7 @@ export default function Gallery() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010] mb-8"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010] mb-8">
             Stories We&apos;ve Told.
           </h2>
 
@@ -77,10 +75,10 @@ export default function Gallery() {
               <button
                 key={tab.id}
                 onClick={() => setActive(tab.id)}
-                className={`px-5 py-2 rounded-full text-sm tracking-wide transition-colors duration-200 ${
+                className={`px-6 py-2.5 rounded-full text-sm tracking-wide transition-all duration-200 ${
                   active === tab.id
-                    ? "bg-[#B89A5C] text-white"
-                    : "border border-[#E5DDD2] text-[#7A756F] hover:border-[#B89A5C] hover:text-[#B89A5C]"
+                    ? "bg-[#B89A5C] text-white shadow-sm"
+                    : "border border-[#B89A5C]/30 text-[#4A4540] hover:border-[#B89A5C] hover:text-[#B89A5C]"
                 }`}
               >
                 {tab.label}
@@ -92,7 +90,7 @@ export default function Gallery() {
         {/* Grid */}
         <motion.div
           layout
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           <AnimatePresence mode="popLayout">
             {images.map((img, i) => (
@@ -111,13 +109,28 @@ export default function Gallery() {
                   alt={img.alt}
                   fill
                   style={{ objectFit: "cover" }}
-                  sizes="(max-width: 640px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="group-hover:scale-105 transition-transform duration-500"
                 />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* CTA */}
+        <div className="flex justify-center mt-12">
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-[#B89A5C] text-[#B89A5C] text-sm tracking-wide rounded-full hover:bg-[#B89A5C] hover:text-white transition-all duration-200 hover:shadow-md"
+          >
+            View Full Portfolio
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
       </div>
     </section>
   );

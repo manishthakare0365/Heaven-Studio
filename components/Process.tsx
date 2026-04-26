@@ -69,10 +69,7 @@ export default function Process() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             Simple. Seamless. Stunning.
           </h2>
         </div>
@@ -80,12 +77,11 @@ export default function Process() {
         {/* Steps */}
         <div className="relative">
           {/* Connecting line — desktop only */}
-          <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px">
+          <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-[1.5px]">
             <div
               className="h-full"
               style={{
-                background:
-                  "linear-gradient(to right, #B89A5C, #D4B47A, #B89A5C)",
+                background: "linear-gradient(to right, #B89A5C, #D4B47A, #B89A5C)",
               }}
             />
           </div>
@@ -100,19 +96,16 @@ export default function Process() {
                 className="flex flex-col items-center text-center"
               >
                 {/* Circle */}
-                <div className="relative z-10 w-20 h-20 rounded-full border-2 border-[#B89A5C] bg-white flex items-center justify-center text-[#B89A5C] mb-4">
+                <div className="relative z-10 w-24 h-24 rounded-full border-2 border-[#B89A5C] bg-[#F9F8F5] flex items-center justify-center text-[#B89A5C] mb-4 shadow-sm">
                   {step.icon}
                 </div>
 
                 {/* Step number */}
-                <span className="text-xs tracking-widest text-[#B89A5C] mb-2 font-medium">
+                <span className="text-[0.65rem] tracking-[0.2em] text-[#B89A5C] mb-2 font-medium uppercase">
                   STEP {step.step}
                 </span>
 
-                <h3
-                  className="text-xl font-medium text-[#111010] mb-2"
-                  style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-                >
+                <h3 className="text-lg font-semibold text-[#111010] mb-2">
                   {step.title}
                 </h3>
                 <p className="text-[#7A756F] text-sm leading-relaxed max-w-xs">

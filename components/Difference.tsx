@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 const cards = [
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
         <circle cx="12" cy="13" r="4" />
       </svg>
@@ -16,7 +16,7 @@ const cards = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="12" r="10" />
         <path d="M8 14s1.5 2 4 2 4-2 4-2" />
         <line x1="9" y1="9" x2="9.01" y2="9" />
@@ -28,7 +28,7 @@ const cards = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
         <polyline points="14 2 14 8 20 8" />
         <polyline points="9 15 10.5 16.5 15 12" />
@@ -55,10 +55,7 @@ export default function Difference() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             Why Families Choose Us.
           </h2>
         </div>
@@ -71,13 +68,14 @@ export default function Difference() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="group p-8 rounded-lg border border-[#E5DDD2] bg-white hover:-translate-y-1.5 transition-transform duration-300"
+              className="group p-8 rounded-lg border border-[#D4C9BE] bg-white hover:-translate-y-2 hover:shadow-lg transition-all duration-300"
             >
-              <div className="text-[#B89A5C] mb-5">{card.icon}</div>
-              <h3
-                className="text-xl font-medium text-[#111010] mb-3"
-                style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-              >
+              {/* Icon circle */}
+              <div className="w-14 h-14 rounded-full bg-[#B89A5C]/10 flex items-center justify-center mb-5 text-[#B89A5C] group-hover:bg-[#B89A5C]/15 transition-colors duration-300">
+                {card.icon}
+              </div>
+
+              <h3 className="text-xl font-semibold text-[#111010] mb-3">
                 {card.title}
               </h3>
               <p className="text-[#7A756F] leading-relaxed text-sm">{card.desc}</p>

@@ -38,7 +38,7 @@ const services = [
   {
     name: "Wedding",
     desc: "Elegant storytelling that immortalises every precious moment of your special day.",
-    image: null,
+    image: "/images/40.jpg",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="9" cy="9" r="3" />
@@ -50,7 +50,7 @@ const services = [
   {
     name: "Pre-Wedding",
     desc: "Romantic, creative sessions that tell the story of your love before the big day.",
-    image: null,
+    image: "/images/100.jpg",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -60,7 +60,7 @@ const services = [
   {
     name: "Corporate",
     desc: "Professional headshots and brand photography that elevate your business identity.",
-    image: null,
+    image: "/images/drive1/22.png",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
@@ -71,7 +71,7 @@ const services = [
   {
     name: "Product & Lifestyle",
     desc: "Stunning product and lifestyle imagery that drives conversions and brand desire.",
-    image: null,
+    image: "/images/drive1/18.png",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
@@ -96,16 +96,13 @@ export default function Services() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             Crafted for Every Chapter.
           </h2>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => {
             const isLast = i === services.length - 1;
             return (
@@ -114,51 +111,40 @@ export default function Services() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`group relative rounded-lg overflow-hidden border border-[#E5DDD2] bg-white cursor-pointer hover:-translate-y-1.5 transition-transform duration-300 ${
+                className={`group relative rounded-lg overflow-hidden border border-[#E5DDD2] bg-white cursor-pointer hover:-translate-y-2.5 hover:shadow-xl hover:border-[#B89A5C]/40 transition-all duration-300 ${
                   isLast ? "lg:col-start-2" : ""
                 }`}
               >
-                {/* Image / Placeholder */}
+                {/* Image */}
                 <div className="relative w-full" style={{ aspectRatio: "4/5" }}>
-                  {service.image ? (
-                    <>
-                      <Image
-                        src={service.image}
-                        alt={service.name}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-[#B89A5C]/0 group-hover:bg-[#B89A5C]/10 transition-colors duration-300" />
-                    </>
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#1A1612] to-[#2C2420] flex items-end p-6">
-                      <span
-                        className="italic text-[#B89A5C] text-xl font-light"
-                        style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-                      >
-                        {service.name}
-                      </span>
-                    </div>
-                  )}
+                  <Image
+                    src={service.image}
+                    alt={service.name}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {/* Hover tint overlay */}
+                  <div className="absolute inset-0 bg-[#B89A5C]/0 group-hover:bg-[#B89A5C]/8 transition-colors duration-300" />
                 </div>
 
                 {/* Card content */}
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[#B89A5C]">{service.icon}</span>
-                    <h3
-                      className="text-lg font-medium text-[#111010]"
-                      style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-                    >
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    {/* Icon circle */}
+                    <div className="w-9 h-9 rounded-full bg-[#B89A5C]/10 flex items-center justify-center text-[#B89A5C] shrink-0 group-hover:bg-[#B89A5C]/20 transition-colors duration-300">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#111010]">
                       {service.name}
                     </h3>
                   </div>
-                  <p className="text-[#7A756F] text-sm leading-relaxed mb-3">
+                  <p className="text-[#7A756F] text-sm leading-relaxed mb-4">
                     {service.desc}
                   </p>
-                  <span className="text-[#B89A5C] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Explore →
+                  <span className="inline-flex items-center gap-1 text-[#B89A5C] text-sm font-medium opacity-60 group-hover:opacity-100 transition-opacity duration-200">
+                    Explore
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
                   </span>
                 </div>
               </motion.div>

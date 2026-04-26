@@ -63,13 +63,13 @@ export default function About() {
           style={{ height: "600px" }}
         >
           <Image
-            src="/images/180.jpg"
+            src="/images/160.jpg"
             alt="Heaven Studio — our philosophy"
             fill
             style={{ objectFit: "cover" }}
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
         </motion.div>
 
         {/* Content */}
@@ -85,10 +85,7 @@ export default function About() {
             </span>
           </div>
 
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010] mb-6 leading-snug"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010] mb-6 leading-snug">
             Every photo is a feeling,{" "}
             <em className="italic text-[#B89A5C]">preserved.</em>
           </h2>
@@ -113,14 +110,11 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="flex items-start gap-3 p-4 rounded-lg border border-[#E5DDD2] bg-[#F9F8F5]"
+                className="flex items-start gap-3 p-5 rounded-lg border border-[#B89A5C]/25 bg-[#F9F8F5] hover:border-[#B89A5C]/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 cursor-default"
               >
                 <span className="text-[#B89A5C] mt-0.5">{s.icon}</span>
                 <div>
-                  <div
-                    className="text-2xl font-medium text-[#111010]"
-                    style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-                  >
+                  <div className="font-display text-2xl font-medium text-[#111010]">
                     {s.value}
                   </div>
                   <div className="text-[#7A756F] text-sm">{s.label}</div>

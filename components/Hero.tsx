@@ -9,7 +9,7 @@ const fadeUp: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { delay: i * 0.08, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
   }),
 };
 
@@ -23,11 +23,8 @@ const fadeIn: Variants = {
 
 export default function Hero() {
   return (
-    <section
-      className="relative w-full overflow-hidden"
-      style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "55fr 45fr" }}
-    >
-      {/* Left column */}
+    <section className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] min-h-screen w-full overflow-hidden">
+      {/* Left column — copy */}
       <div className="flex flex-col justify-center px-10 lg:px-16 xl:px-20 py-32 bg-[#F9F8F5] z-10">
         {/* Eyebrow */}
         <motion.div
@@ -37,11 +34,11 @@ export default function Hero() {
           variants={fadeUp}
           className="flex items-center gap-3 mb-6"
         >
-          <span className="h-px w-8 bg-[#B89A5C]" />
+          <span className="h-px w-12 bg-[#B89A5C]" />
           <span className="text-[#B89A5C] text-xs tracking-[0.25em] uppercase font-medium">
             Premium Photography · Noida
           </span>
-          <span className="h-px w-8 bg-[#B89A5C]" />
+          <span className="h-px w-12 bg-[#B89A5C]" />
         </motion.div>
 
         {/* H1 */}
@@ -50,11 +47,10 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="text-5xl lg:text-6xl xl:text-7xl font-light leading-tight mb-6 text-[#111010]"
-          style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+          className="font-display text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] mb-6 text-[#111010]"
         >
           Moments That{" "}
-          <em className="italic text-[#B89A5C] not-italic" style={{ fontStyle: "italic" }}>
+          <em className="italic text-[#B89A5C]">
             Last Forever.
           </em>
         </motion.h1>
@@ -81,7 +77,7 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center px-7 py-3.5 bg-[#B89A5C] text-white text-sm tracking-wide rounded hover:bg-[#9e8449] transition-colors duration-200"
+            className="inline-flex items-center px-7 py-3.5 bg-[#B89A5C] text-white text-sm tracking-wide rounded hover:bg-[#A8874A] hover:shadow-md transition-all duration-200"
           >
             Book a Session
           </Link>
@@ -114,11 +110,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right column: two image panels */}
-      <div
-        className="relative hidden lg:grid"
-        style={{ display: "grid", gridTemplateColumns: "3fr 2fr" }}
-      >
+      {/* Right column — two image panels (desktop only) */}
+      <div className="relative hidden lg:grid grid-cols-[3fr_2fr]">
         {/* Left panel */}
         <motion.div
           custom={0}
@@ -135,7 +128,7 @@ export default function Hero() {
             priority
             sizes="(max-width: 1280px) 30vw, 25vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/15" />
         </motion.div>
 
         {/* Right panel */}
@@ -154,12 +147,12 @@ export default function Hero() {
             priority
             sizes="(max-width: 1280px) 20vw, 17vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/15" />
         </motion.div>
       </div>
 
-      {/* Mobile: show single image below text */}
-      <div className="relative lg:hidden h-72 col-span-full">
+      {/* Mobile: single image below text */}
+      <div className="relative lg:hidden h-80 col-span-full">
         <Image
           src="/images/180.jpg"
           alt="Heaven Studio photography"

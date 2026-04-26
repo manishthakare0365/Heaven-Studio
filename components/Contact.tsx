@@ -69,6 +69,9 @@ const serviceOptions = [
   "Other",
 ];
 
+const inputClass =
+  "w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-white focus:outline-none focus:border-[#B89A5C] focus:shadow-[0_0_0_3px_rgba(184,154,92,0.15)] transition-all duration-200";
+
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -101,10 +104,7 @@ export default function Contact() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             Book Your Session Today.
           </h2>
         </div>
@@ -116,21 +116,21 @@ export default function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex flex-col gap-4 mb-8">
+            <div className="flex flex-col gap-3 mb-8">
               {contactItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-white rounded-lg border border-[#E5DDD2] hover:border-[#B89A5C] transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-white rounded-lg border border-[#E5DDD2] hover:border-[#B89A5C] hover:bg-[#FDFAF6] hover:shadow-sm transition-all duration-200 group"
                 >
                   <span className="text-[#B89A5C] shrink-0">{item.icon}</span>
                   <div>
                     <div className="text-xs text-[#7A756F] tracking-wide uppercase mb-0.5">
                       {item.label}
                     </div>
-                    <div className="text-[#111010] text-sm group-hover:text-[#B89A5C] transition-colors">
+                    <div className="text-[#111010] text-sm group-hover:text-[#B89A5C] transition-colors duration-200">
                       {item.value}
                     </div>
                   </div>
@@ -143,7 +143,7 @@ export default function Contact() {
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0!2d77.391!3d28.622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM3JzE5LjIiTiA3N8KwMjMnMjcuNiJF!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
                 width="100%"
-                height="240"
+                height="280"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -163,10 +163,7 @@ export default function Contact() {
               onSubmit={handleSubmit}
               className="bg-white rounded-lg border border-[#E5DDD2] p-8 flex flex-col gap-5"
             >
-              <h3
-                className="text-2xl font-light text-[#111010] mb-2"
-                style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-              >
+              <h3 className="font-display text-2xl font-light text-[#111010] mb-2">
                 Send Us a Message
               </h3>
 
@@ -181,7 +178,7 @@ export default function Contact() {
                     placeholder="Your name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-[#F9F8F5] focus:outline-none focus:border-[#B89A5C] transition-colors"
+                    className={inputClass}
                   />
                 </div>
                 <div>
@@ -194,7 +191,7 @@ export default function Contact() {
                     placeholder="+91 XXXXX XXXXX"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-[#F9F8F5] focus:outline-none focus:border-[#B89A5C] transition-colors"
+                    className={inputClass}
                   />
                 </div>
               </div>
@@ -208,7 +205,7 @@ export default function Contact() {
                   placeholder="your@email.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-[#F9F8F5] focus:outline-none focus:border-[#B89A5C] transition-colors"
+                  className={inputClass}
                 />
               </div>
 
@@ -220,7 +217,7 @@ export default function Contact() {
                   required
                   value={form.service}
                   onChange={(e) => setForm({ ...form, service: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-[#F9F8F5] focus:outline-none focus:border-[#B89A5C] transition-colors"
+                  className={inputClass}
                 >
                   <option value="">Select a service</option>
                   {serviceOptions.map((s) => (
@@ -238,13 +235,13 @@ export default function Contact() {
                   placeholder="Tell us about your vision..."
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-[#E5DDD2] rounded text-sm text-[#1A1714] bg-[#F9F8F5] focus:outline-none focus:border-[#B89A5C] transition-colors resize-none"
+                  className={`${inputClass} resize-none`}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3.5 bg-[#B89A5C] text-white text-sm tracking-wide rounded hover:bg-[#9e8449] transition-colors duration-200 flex items-center justify-center gap-2"
+                className="w-full py-3.5 bg-[#B89A5C] text-white text-sm tracking-wide rounded hover:bg-[#A8874A] hover:shadow-lg hover:scale-[1.01] transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />

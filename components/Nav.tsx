@@ -27,6 +27,12 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.classList.toggle("no-scroll", mobileOpen);
+    return () => document.body.classList.remove("no-scroll");
+  }, [mobileOpen]);
+
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Portfolio", href: "/portfolio" },
@@ -50,7 +56,7 @@ export default function Nav() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <svg
             width="28"
             height="28"
@@ -63,13 +69,10 @@ export default function Nav() {
             <path d="M10 8 L14 4 L18 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <div className="flex flex-col leading-none">
-            <span
-              className="text-[#111010] font-medium tracking-[0.18em] text-sm"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem" }}
-            >
+            <span className="font-display text-[#111010] font-medium tracking-[0.18em] text-[1.05rem]">
               HEAVEN
             </span>
-            <span className="text-[#7A756F] tracking-[0.3em] text-[0.55rem] uppercase">
+            <span className="text-[#7A756F] tracking-[0.35em] text-[0.65rem] uppercase">
               STUDIO
             </span>
           </div>
@@ -201,20 +204,26 @@ export default function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white z-50 flex flex-col p-8"
+            className="fixed inset-0 bg-gradient-to-b from-white to-[#F9F8F5] z-50 flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-12">
-              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="text-[#B89A5C]">
                   <circle cx="14" cy="14" r="13" stroke="currentColor" strokeWidth="1.5" />
                   <circle cx="14" cy="14" r="5" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M10 8 L14 4 L18 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="text-[#111010] font-medium tracking-[0.18em]" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.1rem" }}>
+                <span className="font-display text-[#111010] font-medium tracking-[0.18em] text-[1.1rem]">
                   HEAVEN STUDIO
                 </span>
               </Link>
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
+
+              {/* Close button with hover circle */}
+              <button
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#F0EDE6] transition-colors"
+              >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M18 6L6 18M6 6l12 12" stroke="#1A1714" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
@@ -222,7 +231,13 @@ export default function Nav() {
             </div>
 
             <nav className="flex flex-col gap-6">
-              {[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Portfolio", href: "/portfolio" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((link, i) => (
+              {[
+                { label: "Home", href: "/" },
+                { label: "Services", href: "/services" },
+                { label: "Portfolio", href: "/portfolio" },
+                { label: "About", href: "/about" },
+                { label: "Contact", href: "/contact" },
+              ].map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -20 }}
@@ -232,8 +247,7 @@ export default function Nav() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-3xl font-light text-[#1A1714] hover:text-[#B89A5C] transition-colors"
-                    style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+                    className="font-display text-3xl font-light text-[#1A1714] hover:text-[#B89A5C] transition-colors"
                   >
                     {link.label}
                   </Link>

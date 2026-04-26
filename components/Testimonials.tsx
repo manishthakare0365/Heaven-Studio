@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const testimonials = [
@@ -27,6 +27,15 @@ const testimonials = [
 export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeSlide, setActiveSlide] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, clientWidth } = scrollRef.current;
+    const index = Math.round(scrollLeft / clientWidth);
+    setActiveSlide(Math.min(index, testimonials.length - 1));
+  };
 
   return (
     <section ref={ref} className="py-20 lg:py-32 bg-[#F9F8F5]">
@@ -40,10 +49,7 @@ export default function Testimonials() {
             </span>
             <span className="h-px w-8 bg-[#B89A5C]" />
           </div>
-          <h2
-            className="text-4xl lg:text-5xl font-light text-[#111010]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
+          <h2 className="font-display text-4xl lg:text-5xl font-light text-[#111010]">
             What Our Clients Say.
           </h2>
         </div>
@@ -56,15 +62,15 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="bg-white rounded-lg p-8 border border-[#E5DDD2] flex flex-col"
+              className="bg-white rounded-lg p-8 border border-[#D4C9BE] flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default"
             >
               {/* Quote icon */}
               <svg
-                width="32"
-                height="32"
+                width="40"
+                height="40"
                 viewBox="0 0 32 32"
                 fill="none"
-                className="text-[#B89A5C] mb-4 opacity-60"
+                className="text-[#B89A5C] mb-4 opacity-75"
               >
                 <path
                   d="M9.333 20C7.493 20 6 18.507 6 16.667V14c0-3.682 2.985-6.667 6.667-6.667V9.333A5.334 5.334 0 0 0 7.333 14.667V16c0 1.1.9 2 2 2 .368 0 .667.298.667.667v1.333c0 1.1.9 2 2 2h1.333C14.43 22 15 22.57 15 23.333S14.43 24.667 13.333 24.667H12c-1.473 0-2.667-1.194-2.667-2.667z"
@@ -85,7 +91,10 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-[#1A1714] italic leading-relaxed flex-1 mb-6" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem" }}>
+              <p
+                className="font-display text-[#1A1714] italic leading-relaxed flex-1 mb-6"
+                style={{ fontSize: "1.05rem" }}
+              >
                 &ldquo;{t.quote}&rdquo;
               </p>
 
@@ -98,15 +107,20 @@ export default function Testimonials() {
         </div>
 
         {/* Mobile: horizontal scroll */}
-        <div className="md:hidden flex gap-5 overflow-x-auto no-scrollbar pb-4" style={{ scrollSnapType: "x mandatory" }}>
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="md:hidden flex gap-5 overflow-x-auto no-scrollbar pb-4"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-lg p-6 border border-[#E5DDD2] flex flex-col shrink-0 w-[85vw]"
-              style={{ scrollSnapAlign: "start" }}
+              className="bg-white rounded-lg p-6 border border-[#D4C9BE] flex flex-col shrink-0 w-[80vw] max-w-sm"
+              style={{ scrollSnapAlign: "center" }}
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, j) => (
@@ -115,7 +129,10 @@ export default function Testimonials() {
                   </svg>
                 ))}
               </div>
-              <p className="text-[#1A1714] italic leading-relaxed flex-1 mb-4" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem" }}>
+              <p
+                className="font-display text-[#1A1714] italic leading-relaxed flex-1 mb-4"
+                style={{ fontSize: "1.05rem" }}
+              >
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div>
@@ -123,6 +140,27 @@ export default function Testimonials() {
                 <div className="text-[#B89A5C] text-xs tracking-wide mt-0.5">{t.occasion}</div>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile scroll dot indicators */}
+        <div className="flex md:hidden justify-center gap-2 mt-5">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              aria-label={`Go to testimonial ${i + 1}`}
+              onClick={() => {
+                if (!scrollRef.current) return;
+                const cardWidth = scrollRef.current.clientWidth;
+                scrollRef.current.scrollTo({ left: i * cardWidth, behavior: "smooth" });
+                setActiveSlide(i);
+              }}
+              className={`rounded-full transition-all duration-200 ${
+                activeSlide === i
+                  ? "w-5 h-2 bg-[#B89A5C]"
+                  : "w-2 h-2 bg-[#D4C9BE] hover:bg-[#B89A5C]/50"
+              }`}
+            />
           ))}
         </div>
       </div>
