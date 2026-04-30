@@ -716,20 +716,20 @@
     /* ============================================================
        12. FOOTER
     ============================================================ */
-    .footer { background: var(--ink); padding: 5rem 0 0; }
+    .footer { background: var(--white); padding: 5rem 0 0; border-top: 1px solid var(--border); }
     .footer-top {
       display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 3rem; padding-bottom: 3.5rem;
-      border-bottom: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid var(--border);
     }
 
     /* Brand column */
     .f-brand { display: flex; flex-direction: column; }
     .f-wm { display: flex; align-items: center; gap: .55rem; margin-bottom: .9rem; }
-    .f-wm .hv { font-family: var(--font-d); font-weight: 500; font-size: 1.55rem; color: #fff; letter-spacing: .07em; }
-    .f-wm .st { font-family: var(--font-b); font-weight: 300; font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+    .f-wm .hv { font-family: var(--font-d); font-weight: 500; font-size: 1.55rem; color: var(--ink); letter-spacing: .07em; }
+    .f-wm .st { font-family: var(--font-b); font-weight: 300; font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
     .f-tl { font-family: var(--font-d); font-style: italic; font-size: 1rem; color: var(--gold); margin-bottom: .8rem; }
-    .f-desc { font-size: .84rem; color: rgba(255,255,255,.45); line-height: 1.7; margin-bottom: 1.6rem; max-width: 240px; }
+    .f-desc { font-size: .84rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.6rem; max-width: 240px; }
     .f-cta {
       display: inline-flex; align-items: center; gap: .5rem;
       background: var(--gold); color: #fff; text-decoration: none;
@@ -743,40 +743,40 @@
     /* Nav columns */
     .f-col h4 {
       font-size: .59rem; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(255,255,255,.35); margin-bottom: 1.3rem;
+      color: var(--muted); margin-bottom: 1.3rem;
       font-family: var(--font-b); font-weight: 500;
     }
     .f-col ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
-    .f-col ul a { font-size: .86rem; color: rgba(255,255,255,.6); transition: color .2s; }
+    .f-col ul a { font-size: .86rem; color: var(--text); transition: color .2s; }
     .f-col ul a:hover { color: var(--gold); }
 
     /* Social icons */
     .soc { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .2rem; }
     .soc-i {
       width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.14);
+      border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       transition: border-color .2s, background .2s;
     }
-    .soc-i:hover { border-color: var(--gold); background: rgba(184,154,92,.15); }
+    .soc-i:hover { border-color: var(--gold); background: rgba(184,154,92,.08); }
     .soc-i svg { width: 16px; height: 16px; }
 
     /* Quick contact in footer */
     .f-qc { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.4rem; }
-    .f-qc a { font-size: .84rem; color: rgba(255,255,255,.6); transition: color .2s; text-decoration: none; }
+    .f-qc a { font-size: .84rem; color: var(--text); transition: color .2s; text-decoration: none; }
     .f-qc a:hover { color: var(--gold); }
-    .f-qc-label { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); display: block; margin-bottom: .1rem; }
+    .f-qc-label { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .1rem; }
 
     /* Bottom bar */
     .f-btm {
       padding: 1.4rem 0; display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap; gap: .6rem;
     }
-    .f-copy { font-size: .72rem; color: rgba(255,255,255,.3); letter-spacing: .04em; }
-    .f-gr   { font-size: .72rem; color: rgba(255,255,255,.3); }
+    .f-copy { font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+    .f-gr   { font-size: .72rem; color: var(--muted); }
     .f-gr .gs { color: var(--gold); }
     .f-top {
-      font-size: .68rem; color: rgba(255,255,255,.35); letter-spacing: .1em;
+      font-size: .68rem; color: var(--muted); letter-spacing: .1em;
       text-transform: uppercase; text-decoration: none;
       display: flex; align-items: center; gap: .35rem; transition: color .2s;
     }
