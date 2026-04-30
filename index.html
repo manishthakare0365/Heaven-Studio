@@ -635,23 +635,21 @@
     /* ============================================================
        11. CONTACT
     ============================================================ */
-    .contact { padding: var(--pad); background: var(--ink); }
+    .contact { padding: var(--pad); background: var(--white); }
     .contact .sec-hdr { margin-bottom: .8rem; }
-    .contact .sec-hdr h2 { color: #fff; }
-    .contact .eyebrow { color: var(--gold); }
-    .contact-intro { color: rgba(255,255,255,.55); font-size: .92rem; line-height: 1.75; margin-bottom: 3.5rem; max-width: 500px; }
+    .contact-intro { color: var(--muted); font-size: .92rem; line-height: 1.75; margin-bottom: 3.5rem; max-width: 500px; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
 
     /* Contact info cards */
     .ci-cards { display: flex; flex-direction: column; gap: .75rem; }
     .ci-card {
       display: flex; align-items: center; gap: 1.1rem;
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+      background: var(--light); border: 1px solid var(--border);
       padding: 1.1rem 1.3rem;
       transition: border-color .25s, background .25s;
       text-decoration: none;
     }
-    .ci-card:hover { border-color: rgba(184,154,92,.55); background: rgba(184,154,92,.08); }
+    .ci-card:hover { border-color: var(--gold); background: rgba(184,154,92,.06); }
     .ci-ico-wrap {
       width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
       background: rgba(184,154,92,.12); border: 1px solid rgba(184,154,92,.28);
@@ -661,25 +659,25 @@
       stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
     .ci-info { flex: 1; min-width: 0; }
     .ci-l { display: block; font-size: .59rem; letter-spacing: .17em; text-transform: uppercase;
-      color: rgba(255,255,255,.4); font-weight: 500; margin-bottom: .2rem; }
-    .ci-v { font-size: .88rem; color: rgba(255,255,255,.82); }
+      color: var(--gold); font-weight: 500; margin-bottom: .2rem; }
+    .ci-v { font-size: .88rem; color: var(--text); }
 
     /* Studio hours */
     .ci-hours {
       display: flex; gap: 0; margin-top: 1.2rem;
-      border: 1px solid rgba(255,255,255,.09);
+      border: 1px solid var(--border);
     }
-    .ci-hr-item { flex: 1; padding: 1rem 1.2rem; }
-    .ci-hr-item:first-child { border-right: 1px solid rgba(255,255,255,.09); }
+    .ci-hr-item { flex: 1; padding: 1rem 1.2rem; background: var(--light); }
+    .ci-hr-item:first-child { border-right: 1px solid var(--border); }
     .ci-hr-day { font-size: .59rem; letter-spacing: .15em; text-transform: uppercase;
-      color: rgba(255,255,255,.38); margin-bottom: .35rem; }
-    .ci-hr-time { font-size: .9rem; color: rgba(255,255,255,.75); }
+      color: var(--muted); margin-bottom: .35rem; }
+    .ci-hr-time { font-size: .9rem; color: var(--text); }
 
     .cmap { margin-top: 1.2rem; width: 100%; height: 230px; overflow: hidden; }
     .cmap iframe { width: 100%; height: 100%; border: none; display: block; filter: grayscale(20%) contrast(1.05); }
 
     /* Booking form card */
-    .cform-wrap { background: #fff; padding: 2.4rem 2.2rem; }
+    .cform-wrap { background: var(--light); border: 1px solid var(--border); padding: 2.4rem 2.2rem; }
     .cform-title { font-family: var(--font-d); font-size: 1.65rem; font-weight: 400;
       color: var(--ink); margin-bottom: 1.8rem; line-height: 1.2; }
     .cform-title em { font-style: italic; color: var(--gold); }
