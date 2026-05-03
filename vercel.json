@@ -1,0 +1,11 @@
+{
+  "outputDirectory": ".",
+  "buildCommand": null,
+  "framework": null,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
