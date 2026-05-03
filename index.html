@@ -498,40 +498,23 @@
     .gallery { padding: var(--pad); background: var(--off); }
     .gallery .sec-hdr { margin-bottom: 2.5rem; }
 
-    .g-tabs {
-      display: flex; justify-content: center; gap: .6rem;
-      margin-bottom: 2.5rem; flex-wrap: wrap;
-    }
-    .g-tab {
-      font-family: var(--font-b); font-size: .68rem; font-weight: 500;
-      letter-spacing: .14em; text-transform: uppercase;
-      padding: .6rem 1.6rem; border: 1.5px solid var(--border);
-      background: transparent; color: var(--muted);
-      cursor: pointer; transition: all .25s;
-    }
-    .g-tab.active, .g-tab:hover {
-      border-color: var(--gold); background: var(--gold); color: #fff;
-    }
-
-    .g-grid {
+    /* 2-up large image duo */
+    .g-duo {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
-    /* All cells same 3:4 portrait ratio — no height-mismatch rows */
-    .g-cell {
+    .g-duo-cell {
       overflow: hidden; position: relative;
-      aspect-ratio: 3/4; background: #1A1612;
+      height: 80vh; max-height: 820px; min-height: 480px;
+      background: #1A1612;
     }
-    .g-cell img {
+    .g-duo-cell img {
       width: 100%; height: 100%; object-fit: cover;
       object-position: center top; display: block;
-      transition: transform .55s ease;
+      transition: transform .6s ease;
     }
-    .g-cell.mid img  { object-position: center center; }
-    .g-cell.bot img  { object-position: center bottom; }
-    .g-cell:hover img { transform: scale(1.06); }
-    .g-cell.hidden { display: none; }
+    .g-duo-cell:hover img { transform: scale(1.04); }
 
     .g-foot { text-align: center; margin-top: 2.5rem; }
 
@@ -838,7 +821,7 @@
       .svc-grid { grid-template-columns: repeat(2,1fr); gap: 1.2rem; }
       .svc-card-7 { grid-column: 1 / 2; }
       /* GALLERY */
-      .g-grid { grid-template-columns: repeat(3,1fr); }
+      .g-duo-cell { height: 60vh; max-height: 700px; }
       /* DIFFERENCE */
       .diff-grid { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
       .diff-grid .diff-card:last-child { grid-column: 1/-1; }
@@ -896,9 +879,8 @@
       h2 { font-size: clamp(1.65rem, 5.5vw, 2.4rem); }
       /* GALLERY */
       .gallery .sec-hdr { margin-bottom: 1.8rem; }
-      .g-grid { grid-template-columns: repeat(2,1fr); gap: 3px; }
-      .g-tabs { gap: .35rem; margin-bottom: 1.8rem; }
-      .g-tab { font-size: .59rem; padding: .5rem 1rem; letter-spacing: .1em; }
+      .g-duo { grid-template-columns: 1fr; gap: 6px; }
+      .g-duo-cell { height: 70vw; max-height: 500px; min-height: 260px; }
       .g-foot { margin-top: 1.8rem; }
       /* DIFFERENCE */
       .diff-grid { grid-template-columns: 1fr; gap: .8rem; }
@@ -1220,7 +1202,7 @@
 </section>
 
 <!-- ============================================================
-     GALLERY — tabbed grid with all real photos
+     GALLERY — two large images
 ============================================================ -->
 <section class="gallery" id="gallery" data-pg="home portfolio">
   <div class="wrap">
@@ -1229,92 +1211,16 @@
       <h2>Stories We've Told.</h2>
     </div>
 
-    <div class="g-tabs fu d1">
-      <button class="g-tab active" data-filter="all">All Work</button>
-      <button class="g-tab" data-filter="maternity">Maternity</button>
-      <button class="g-tab" data-filter="kids">Kids &amp; Newborn</button>
+    <div class="g-duo fu d1">
+      <div class="g-duo-cell">
+        <img src="images/layout%2001/9.jpg" alt="Maternity Photography — Heaven Studio Noida" loading="lazy" decoding="async">
+      </div>
+      <div class="g-duo-cell">
+        <img src="images/layout%2003/40.jpg" alt="Maternity Photography — Heaven Studio Noida" loading="lazy" decoding="async">
+      </div>
     </div>
 
-    <div class="g-grid fu d2">
-
-      <!-- MATERNITY — layout 01 (1–12) -->
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/1.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/2.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/4.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/6.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/7.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/8.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/10.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/11.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/12.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/13.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2001/14.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="maternity">
-        <img src="images/layout%2002/102.jpg" alt="Maternity Photography" loading="lazy" decoding="async">
-      </div>
-
-      <!-- KIDS & NEWBORN — layout 02 + layout 03 -->
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/103.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/104.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/105.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/106.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/107.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/109.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2002/110.jpg" alt="Newborn Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2003/153.jpg" alt="Kids Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2003/154.jpg" alt="Kids Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2003/155.jpg" alt="Kids Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2003/156.jpg" alt="Kids Photography" loading="lazy" decoding="async">
-      </div>
-      <div class="g-cell" data-cat="kids">
-        <img src="images/layout%2003/157.jpg" alt="Kids Photography" loading="lazy" decoding="async">
-      </div>
-
-    </div>
-    <div class="g-foot fu d3">
+    <div class="g-foot fu d2">
       <a href="#contact" class="btn btn-ghost">Enquire About Your Session &nbsp;→</a>
     </div>
   </div>
