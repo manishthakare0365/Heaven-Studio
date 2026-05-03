@@ -349,17 +349,21 @@
        2. HERO — premium white
     ============================================================ */
     .hero {
-      min-height: 100vh; display: grid; grid-template-columns: 55fr 45fr;
-      align-items: center; background: var(--white); position: relative;
-      overflow: hidden; padding-top: 80px;
+      background: var(--white); padding-top: 80px;
+      display: flex; flex-direction: column; align-items: center;
+      overflow: hidden; position: relative;
     }
     .hero::after {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 8% 55%, rgba(184,154,92,.05) 0%,transparent 55%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(184,154,92,.05) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    .hero-left { padding: 5rem 3.5rem 5rem 5rem; position: relative; z-index: 2; }
+    /* Centred text block */
+    .hero-text {
+      text-align: center; padding: 5rem 2rem 3.5rem;
+      max-width: 780px; width: 100%; position: relative; z-index: 2;
+    }
     .hero-ey {
       display: inline-flex; align-items: center; gap: .75rem;
       font-size: .62rem; font-weight: 500; letter-spacing: .22em;
@@ -379,11 +383,12 @@
     .hero-h1 em { font-style: italic; color: var(--gold); }
     .hero-sub {
       font-size: .98rem; color: var(--muted); line-height: 1.82;
-      max-width: 440px; margin-bottom: 2.6rem; font-weight: 300;
+      max-width: 520px; margin: 0 auto 2.6rem; font-weight: 300;
       opacity: 0; animation: fadeUp .9s .7s ease forwards;
     }
     .hero-ctas {
-      display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 3rem;
       opacity: 0; animation: fadeUp .9s .85s ease forwards;
     }
     .hero-badge {
@@ -395,23 +400,26 @@
     }
     .hero-badge .gs { color: var(--gold); }
 
-    /* Hero right — full-bleed 2-panel split, zero empty space */
-    .hero-right {
-      position: relative; height: 100%; min-height: 100vh;
-      overflow: hidden;
+    /* 3-column image strip */
+    .hero-imgs {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; width: 100%; padding: 0 3rem;
+      align-items: end; box-sizing: border-box;
     }
-    .hero-photos {
-      position: absolute; inset: 0;
-      display: grid; grid-template-columns: 3fr 2fr; gap: 3px;
-      background: var(--border);
+    /* Centre — tall oval/pill */
+    .hi-main {
+      height: 640px; overflow: hidden;
+      border-radius: 999px;
     }
-    .hp-a, .hp-b { position: relative; overflow: hidden; }
-    .hp-a img, .hp-b img {
+    /* Sides — rectangular, shorter */
+    .hi-side { height: 400px; overflow: hidden; border-radius: 0; }
+    .hi-main img, .hi-side img {
       width: 100%; height: 100%; object-fit: cover;
       object-position: center top; display: block;
     }
-    .hp-a { opacity: 0; animation: fadeIn 1.1s .5s ease forwards; }
-    .hp-b { opacity: 0; animation: fadeIn 1.1s .75s ease forwards; }
+    .hi-left  { opacity: 0; animation: fadeIn 1.1s .5s ease forwards; }
+    .hi-main  { opacity: 0; animation: fadeIn 1.1s .3s ease forwards; }
+    .hi-right { opacity: 0; animation: fadeIn 1.1s .7s ease forwards; }
 
     @keyframes fadeIn  { from{opacity:0}         to{opacity:1} }
     @keyframes fadeUp  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
@@ -819,12 +827,10 @@
       .nav { padding: 1.2rem 1.8rem; }
       .nav.scrolled { padding: .85rem 1.8rem; }
       /* HERO */
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 4rem 3rem 2.5rem; text-align: center; }
-      .hero-sub { max-width: 520px; margin-left: auto; margin-right: auto; }
-      .hero-ctas { justify-content: center; }
-      .hero-badge { display: inline-flex; }
-      .hero-right { height: 52vw; min-height: 260px; max-height: 520px; }
+      .hero-text { padding: 4rem 2rem 2.5rem; }
+      .hero-imgs { padding: 0 1rem; gap: 1rem; }
+      .hi-main { height: 480px; }
+      .hi-side { height: 300px; }
       /* ABOUT */
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-photo { height: 440px; }
@@ -861,14 +867,22 @@
       .nav { padding: 1rem 1.2rem; }
       .nav.scrolled { padding: .75rem 1.2rem; }
       /* HERO */
-      .hero-left { padding: 2rem 1.2rem 1.5rem; }
+      .hero-text { padding: 2.5rem 1.2rem 2rem; }
       .hero-ey { font-size: .6rem; margin-bottom: 1rem; }
       .hero-h1 { font-size: clamp(2.1rem, 9vw, 2.9rem); margin-bottom: 1.4rem; }
-      .hero-sub { font-size: .9rem; margin-bottom: 2rem; max-width: 100%; }
+      .hero-sub { font-size: .9rem; margin-bottom: 2rem; }
       .hero-ctas { gap: .7rem; }
       .hero-ctas .btn { font-size: .63rem; padding: .8rem 1.6rem; }
       .hero-badge { font-size: .63rem; padding: .45rem .85rem; }
-      .hero-right { height: 58vw; max-height: 340px; min-height: 200px; }
+      /* Stack images on mobile: oval centre first, sides below side by side */
+      .hero-imgs {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        padding: 0 .8rem; gap: .5rem;
+      }
+      .hi-main  { grid-column: 1 / -1; height: 62vw; max-height: 360px; order: 1; border-radius: 999px; }
+      .hi-left  { height: 45vw; max-height: 240px; order: 2; }
+      .hi-right { height: 45vw; max-height: 240px; order: 3; }
       /* ABOUT */
       .about-photo { height: 300px; }
       .about-stats { gap: 1.4rem; }
@@ -938,7 +952,6 @@
       :root { --pad: 2.8rem 0; }
       .wrap { padding: 0 .95rem; }
       .hero-h1 { font-size: clamp(1.85rem, 10vw, 2.4rem); }
-      .hero-right { height: 66vw; max-height: 290px; }
       .hero-ctas { flex-direction: column; align-items: center; }
       .hero-ctas .btn { width: 100%; max-width: 280px; text-align: center; }
       .about-photo { height: 260px; }
@@ -1026,10 +1039,12 @@
      HERO
 ============================================================ -->
 <section class="hero" id="home" data-pg="home">
-  <div class="hero-left">
+
+  <!-- Centred text -->
+  <div class="hero-text">
     <span class="hero-ey">Premium Photography &nbsp;·&nbsp; Noida</span>
     <h1 class="hero-h1">Moments That<br><em>Last Forever.</em></h1>
-    <p class="hero-sub">Heaven Studio crafts timeless visual stories — from the first heartbeat to the biggest day of your life. Every session is handled with intention, warmth, and an artist's eye.</p>
+    <p class="hero-sub">Heaven Studio crafts timeless visual stories — from the first heartbeat to the biggest day of your life.</p>
     <div class="hero-ctas">
       <a href="#contact" class="btn btn-gold">Book a Session</a>
       <a href="#gallery" class="btn btn-ghost-light">View Portfolio</a>
@@ -1038,16 +1053,24 @@
       <span class="gs">★</span>&nbsp;4.9 &nbsp;·&nbsp; 200+ Families Served
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-photos">
-      <div class="hp-a">
-        <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/180.jpg" alt="Maternity Photography — Heaven Studio Noida" loading="eager" decoding="sync">
-      </div>
-      <div class="hp-b">
-        <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/70.jpg" alt="Maternity Photography — Heaven Studio Noida" style="object-position:center center;" loading="eager" decoding="sync">
-      </div>
+
+  <!-- 3-column images: side | oval centre | side -->
+  <div class="hero-imgs">
+    <div class="hi-side hi-left">
+      <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/70.jpg"
+           alt="Photography — Heaven Studio Noida" loading="eager" decoding="sync">
+    </div>
+    <div class="hi-main">
+      <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/180.jpg"
+           alt="Maternity Photography — Heaven Studio Noida" loading="eager" decoding="sync">
+    </div>
+    <div class="hi-side hi-right">
+      <img src="Downloads/Heaven%20Studio%20Google%20Drive/Drive%202/70.jpg"
+           alt="Photography — Heaven Studio Noida" loading="eager" decoding="sync"
+           style="object-position: center center;">
     </div>
   </div>
+
 </section>
 
 
